@@ -1,4 +1,4 @@
 ﻿Javalabra
 =========
 
-Opintoseurantajärjestelmä - joululabra 2012
+Gladiaattorimanageripeli - Joululabra 2012
