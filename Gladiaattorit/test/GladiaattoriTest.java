@@ -42,4 +42,15 @@ public class GladiaattoriTest {
     //
     // @Test
     // public void hello() {}
+    
+    @Test
+    public void gladiaattorinNimiEiOleTyhja(){
+        assertFalse("Gladiaattorin nimi on tyhjä!",taistelija.getNimi().isEmpty());
+    }
+    
+    @Test
+    public void vahennaEnergiaaEiVahennaAlleNollan(){
+        taistelija.vahennaEnergiaa(11);
+        assertEquals(0,taistelija.getEnergia());
+    }
 }

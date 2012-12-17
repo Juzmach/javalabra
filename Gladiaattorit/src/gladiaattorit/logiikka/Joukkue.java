@@ -20,14 +20,14 @@ public class Joukkue {
     public String getNimi() {
         return nimi;
     }
-    
-    public int getJoukkueenKoko(){
-        if(gladiaattorit.isEmpty()){
+
+    public int getJoukkueenKoko() {
+        if (gladiaattorit.isEmpty()) {
             return 0;
         }
         return gladiaattorit.size();
     }
-   
+
     public void lisaaGladiaattori(Gladiaattori lisattava) {
         if (!this.gladiaattorit.contains(lisattava)) {
             this.gladiaattorit.add(lisattava);
@@ -53,6 +53,4 @@ public class Joukkue {
         }
         return tuloste;
     }
-    
-    
 }
