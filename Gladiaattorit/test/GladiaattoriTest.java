@@ -16,24 +16,25 @@ import static org.junit.Assert.*;
  * @author juusostr
  */
 public class GladiaattoriTest {
+
     public Gladiaattori taistelija;
-    
+
     public GladiaattoriTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
         taistelija = new Gladiaattori("Taavi");
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -42,15 +43,21 @@ public class GladiaattoriTest {
     //
     // @Test
     // public void hello() {}
-    
+
     @Test
-    public void gladiaattorinNimiEiOleTyhja(){
-        assertFalse("Gladiaattorin nimi on tyhjä!",taistelija.getNimi().isEmpty());
+    public void gladiaattorinNimiEiOleTyhja() {
+        assertFalse("Gladiaattorin nimi on tyhjä!", taistelija.getNimi().isEmpty());
+    }
+
+    @Test
+    public void vahennaEnergiaaEiVahennaAlleNollan() {
+        taistelija.vahennaEnergiaa(11);
+        assertEquals(0, taistelija.getEnergia());
     }
     
     @Test
-    public void vahennaEnergiaaEiVahennaAlleNollan(){
-        taistelija.vahennaEnergiaa(11);
-        assertEquals(0,taistelija.getEnergia());
+    public void gladiaattoriKaatuuJosEnergiaOnNolla(){
+        taistelija.vahennaEnergiaa(10);
+        assertFalse("Gladiaattorin on vielä elossa!",taistelija.isElossa());
     }
 }

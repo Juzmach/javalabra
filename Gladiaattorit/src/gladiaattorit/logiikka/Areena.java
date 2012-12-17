@@ -9,6 +9,7 @@ package gladiaattorit.logiikka;
  * @author juusostr
  */
 public class Areena {
+
     private Gladiaattori[][] areena;
 
     public Areena() {
