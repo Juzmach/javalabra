@@ -10,14 +10,26 @@ package gladiaattorit.logiikka;
  */
 public class Areena {
 
-    private Gladiaattori[][] areena;
+    private Ruutu[][] areena;
+    private Joukkue kotiJoukkue;
+    private Joukkue vierasJoukkue;
 
-    public Areena() {
-        this.areena = new Gladiaattori[16][8];
+    public Areena(Joukkue kotiJoukkue, Joukkue vierasJoukkue) {
+        this.areena = new Ruutu[8][7];
+        this.kotiJoukkue = kotiJoukkue;
+        this.vierasJoukkue = vierasJoukkue;
+        this.asetaRuudut();
     }
 
-    public Gladiaattori[][] getAreena() {
+    private void asetaRuudut() {
+        for (int y = 0; y < areena.length; y++) {
+            for (int x = 0; x < areena[y].length; x++) {
+                areena[y][x] = new Ruutu(areena,y,x);
+            }
+        }
+    }
+
+    public Ruutu[][] getAreena() {
         return areena;
     }
-    
 }
