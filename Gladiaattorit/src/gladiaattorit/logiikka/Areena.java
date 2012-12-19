@@ -24,11 +24,11 @@ public class Areena {
     private void asetaRuudut() {
         for (int y = 0; y < areena.length; y++) {
             for (int x = 0; x < areena[y].length; x++) {
-                areena[y][x] = new Ruutu(areena,y,x);
+                areena[y][x] = new Ruutu(y, x);
             }
         }
     }
-
+    
     public Ruutu[][] getAreena() {
         return areena;
     }

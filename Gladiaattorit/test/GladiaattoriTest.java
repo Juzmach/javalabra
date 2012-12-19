@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import gladiaattorit.logiikka.Gladiaattori;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -38,11 +33,6 @@ public class GladiaattoriTest {
     @After
     public void tearDown() {
     }
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
 
     @Test
     public void gladiaattorinNimiEiOleTyhja() {

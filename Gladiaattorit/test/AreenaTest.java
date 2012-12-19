@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import gladiaattorit.logiikka.Areena;
 import gladiaattorit.logiikka.Joukkue;
 import gladiaattorit.logiikka.Ruutu;
@@ -40,11 +35,6 @@ public class AreenaTest {
     @After
     public void tearDown() {
     }
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
 
     @Test
     public void areenaOikeanKokoinen() {
@@ -58,6 +48,12 @@ public class AreenaTest {
         }
         assertEquals(oikeaKoko, koko);
     }
+    
+    @Test
+    public void areenallaOnRuutujaJotkaEivätOleNull(){
+        assertNotNull(areena.getAreena()[3][3]);
+    }
+    
     
    
 }

@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import gladiaattorit.logiikka.Gladiaattori;
 import gladiaattorit.logiikka.Joukkue;
 import org.junit.After;
@@ -38,12 +33,7 @@ public class JoukkueTest {
     @After
     public void tearDown() {
     }
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
-    
+
     @Test
     public void joukkueellaOnNimiJokaEiOleTyhja(){
         assertFalse("Joukkueen nimi on tyhjä!", joukkue.getNimi().isEmpty());
@@ -62,7 +52,7 @@ public class JoukkueTest {
     }
     
     @Test
-    public void josGladiaattoriaEiLoydyJoukkueestaHaeGladiaattoriPalauttaaNul(){
+    public void josGladiaattoriaEiLoydyJoukkueestaHaeGladiaattoriPalauttaaNull(){
         joukkue.lisaaGladiaattori(new Gladiaattori("Taavi"));
         assertNull(joukkue.haeGladiaattori("Timo"));
     }
