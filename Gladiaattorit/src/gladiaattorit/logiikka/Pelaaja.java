@@ -14,8 +14,8 @@ public class Pelaaja {
         this.joukkue = this.luoJoukkue(joukkueenNimi);
     }
 
-    public void liikuta(Gladiaattori liikutettava) {
-        liikutettava.liiku(null);
+    public void liikuta(Gladiaattori liikutettava, Ruutu uusiRuutu) {
+        liikutettava.liiku(uusiRuutu);
     }
     
     private Joukkue luoJoukkue(String nimi) {
