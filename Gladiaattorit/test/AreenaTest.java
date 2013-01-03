@@ -1,4 +1,5 @@
 import gladiaattorit.logiikka.Areena;
+import gladiaattorit.logiikka.Gladiaattori;
 import gladiaattorit.logiikka.Joukkue;
 import gladiaattorit.logiikka.Ruutu;
 import org.junit.After;
@@ -29,7 +30,15 @@ public class AreenaTest {
 
     @Before
     public void setUp() {
-        areena = new Areena(new Joukkue("Tepon Testaajat"), new Joukkue("Taavin Tallaajat"));
+        Joukkue teppo = new Joukkue("Tepon Testaajat");
+        Joukkue taavi = new Joukkue("Taavin Tallaajat");
+        
+        for (int i = 0; i < 8; i++) {
+            teppo.lisaaGladiaattori(new Gladiaattori("" + i));
+            taavi.lisaaGladiaattori(new Gladiaattori("" + i));
+        }
+        
+        areena = new Areena(teppo,taavi);
     }
 
     @After
@@ -39,7 +48,7 @@ public class AreenaTest {
     @Test
     public void areenaOikeanKokoinen() {
         int koko = 0;
-        int oikeaKoko = 56;
+        int oikeaKoko = 64;
         Ruutu[][] ruudut = areena.getAreena();
         for (int i = 0; i < ruudut.length; i++) {
             for (int j = 0; j < ruudut[i].length; j++) {
@@ -52,6 +61,16 @@ public class AreenaTest {
     @Test
     public void areenallaOnRuutujaJotkaEivätOleNull(){
         assertNotNull(areena.getAreena()[3][3]);
+    }
+    
+    @Test
+    public void metodiAsetaJoukkueetAsettaaKotijoukkueenAreenalle(){
+        assertNotNull(areena.getAreena()[6][3].getGladiaattori());
+    }
+    
+    @Test
+    public void metodiAsetaJoukkueetAsettaaVierasjoukkueenAreenalle(){
+        assertNotNull(areena.getAreena()[0][3].getGladiaattori());
     }
     
     

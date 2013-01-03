@@ -45,6 +45,11 @@ public class Joukkue {
         return null;
     }
 
+    public List<Gladiaattori> getGladiaattorit() {
+        return gladiaattorit;
+    }
+    
+
     @Override
     public String toString() {
         String tuloste = "";
