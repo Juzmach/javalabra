@@ -3,8 +3,6 @@ package gladiaattorit;
 import gladiaattorit.kayttoliittyma.Tekstikayttoliittyma;
 import java.util.Scanner;
 
-
-
 /**
  *
  * @author juzmach
@@ -15,6 +13,6 @@ public class Main {
         Scanner lukija = new Scanner(System.in);
         Tekstikayttoliittyma teksti = new Tekstikayttoliittyma(lukija);
         teksti.kaynnista();
-        
+
     }
 }

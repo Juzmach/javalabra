@@ -48,4 +48,17 @@ public class RuutuTest {
         
         assertEquals(teppo,ruutu.getGladiaattori());
     }
+    
+    @Test
+    public void ruudunGladiaattorinRuutuEiOleNull(){
+        Gladiaattori teppo = new Gladiaattori("Teppo");
+        ruutu.asetaGladiaattori(teppo);
+        
+        assertNotNull(ruutu.getGladiaattori().getRuutu());
+    }
+    
+    @Test
+    public void haeKoordinaatitPalauttavatKoordinaatitOikein(){
+        assertEquals("3,4",ruutu.haeKoordinaatit());
+    }
 }

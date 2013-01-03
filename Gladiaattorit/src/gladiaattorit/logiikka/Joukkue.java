@@ -48,11 +48,10 @@ public class Joukkue {
     public List<Gladiaattori> getGladiaattorit() {
         return gladiaattorit;
     }
-    
 
     @Override
     public String toString() {
-        String tuloste = "";
+        String tuloste = this.nimi + "\n";
         for (Gladiaattori gladiaattori : gladiaattorit) {
             tuloste += gladiaattori.toString() + "\n";
         }
