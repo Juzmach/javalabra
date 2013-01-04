@@ -41,19 +41,19 @@ public class JoukkueTest {
     
     @Test
     public void josJoukkueeseenLisaaYhdenGladiaattorinJoukkueessaOnYksiJasen(){
-        joukkue.lisaaGladiaattori(new Gladiaattori("Taavi"));
+        joukkue.lisaaGladiaattori(new Gladiaattori("Taavi",0));
         assertEquals(1,joukkue.getJoukkueenKoko());
     }
     
     @Test
     public void JosGladiaattoriLoytyyJoukkueestaHaeGladiaattoriEiPalautaNull(){
-        joukkue.lisaaGladiaattori(new Gladiaattori("Taavi"));
+        joukkue.lisaaGladiaattori(new Gladiaattori("Taavi",0));
         assertNotNull(joukkue.haeGladiaattori("Taavi"));
     }
     
     @Test
     public void josGladiaattoriaEiLoydyJoukkueestaHaeGladiaattoriPalauttaaNull(){
-        joukkue.lisaaGladiaattori(new Gladiaattori("Taavi"));
+        joukkue.lisaaGladiaattori(new Gladiaattori("Taavi",0));
         assertNull(joukkue.haeGladiaattori("Timo"));
     }
     
@@ -61,5 +61,10 @@ public class JoukkueTest {
     public void joukkueenKokoOnNollaJosEiYhtaanGladiaattoriaLisatty(){
         assertEquals(0,joukkue.getJoukkueenKoko());
     }
+    
+//    @Test
+//    public void haeGladiaattoriMetodiHakeeOikeanGladiaattorinPelinumerolla(){
+//        
+//    }
     
 }

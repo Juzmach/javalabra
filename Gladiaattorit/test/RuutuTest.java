@@ -40,8 +40,8 @@ public class RuutuTest {
     
     @Test
     public void asetaGladiaattoriEiAsetaGladiaattoriaJosRuutuOnKaytossa(){
-        Gladiaattori teppo = new Gladiaattori("Teppo");
-        Gladiaattori taavi = new Gladiaattori("Taavi");
+        Gladiaattori teppo = new Gladiaattori("Teppo",0);
+        Gladiaattori taavi = new Gladiaattori("Taavi",0);
         
         ruutu.asetaGladiaattori(teppo);
         ruutu.asetaGladiaattori(taavi);
@@ -51,14 +51,11 @@ public class RuutuTest {
     
     @Test
     public void ruudunGladiaattorinRuutuEiOleNull(){
-        Gladiaattori teppo = new Gladiaattori("Teppo");
+        Gladiaattori teppo = new Gladiaattori("Teppo",0);
         ruutu.asetaGladiaattori(teppo);
         
         assertNotNull(ruutu.getGladiaattori().getRuutu());
     }
     
-    @Test
-    public void haeKoordinaatitPalauttavatKoordinaatitOikein(){
-        assertEquals("3,4",ruutu.haeKoordinaatit());
-    }
+    
 }

@@ -4,6 +4,7 @@ import gladiaattorit.logiikka.Areena;
 import gladiaattorit.logiikka.Gladiaattori;
 import gladiaattorit.logiikka.Joukkue;
 import gladiaattorit.logiikka.Pelaaja;
+import gladiaattorit.logiikka.Suunta;
 import gladiaattorit.logiikka.Taistelutoiminta;
 import java.util.Scanner;
 
@@ -15,22 +16,18 @@ public class Tekstikayttoliittyma {
 
     private Taistelutoiminta taistelu;
     private Scanner lukija;
-    private Pelaaja pelaaja;
-    private Pelaaja vastustaja;
 
     public Tekstikayttoliittyma(Scanner lukija) {
         this.lukija = lukija;
-        this.luoPelaajat();
-        this.taistelu = new Taistelutoiminta(pelaaja, vastustaja);
+        this.alustus();
     }
 
-    private void luoPelaajat() {
+    private void alustus() {
         System.out.println("Anna nimesi: ");
         String pelaajanNimi = lukija.nextLine();
         System.out.println("Anna joukkueesi nimi: ");
         String pelaajanJoukkueenNimi = lukija.nextLine();
-        this.pelaaja = new Pelaaja(pelaajanNimi, pelaajanJoukkueenNimi);
-        this.vastustaja = new Pelaaja("Hodor", "Hodorin Hurjat");
+        this.taistelu = new Taistelutoiminta(pelaajanNimi,pelaajanJoukkueenNimi);
     }
 
     public void kaynnista() {
@@ -50,6 +47,10 @@ public class Tekstikayttoliittyma {
             if (komento.equals("2")) {
                 this.tulostaJoukkue();
             }
+            if (komento.equals("3")){
+                this.liikuta();
+                this.tulostaAreena();
+            }
         }
     }
 
@@ -58,21 +59,42 @@ public class Tekstikayttoliittyma {
         System.out.println("Y - Tulostaa komennot");
         System.out.println("1 - Tulosta areena");
         System.out.println("2 - Tulosta joukkue");
+        System.out.println("3 - Liikuta");
+    }
+    
+    private void liikuta(){
+        System.out.println("Valitse gladiaattori: (0-7)");
+        int gladiaattorinNumero = Integer.parseInt(lukija.nextLine());
+        System.out.println("Valitse suunta: (Vasen, Oikea, Ylos, Alas");
+        String suunta = lukija.nextLine();
+        Suunta valittuSuunta;
+        if(suunta.toUpperCase().equals("VASEN")){
+            valittuSuunta = Suunta.VASEN;
+        } else if(suunta.toUpperCase().equals("OIKEA")){
+            valittuSuunta = Suunta.OIKEA;
+        } else if(suunta.toUpperCase().equals("YLOS")){
+            valittuSuunta = Suunta.YLOS;
+        } else if(suunta.toUpperCase().equals("ALAS")){
+            valittuSuunta = Suunta.ALAS;
+        } else {
+            System.out.println("Väärä suunta!");
+        }
+        taistelu.liikutaGladiaattoria(taistelu.getPelaaja().getJoukkue().haeGladiaattori(gladiaattorinNumero), Suunta.VASEN);
     }
 
     private void tulostaJoukkue() {
         while (true) {
             System.out.println("Mikä joukkue? (Pelaaja: 1, Vastustaja: 2, Kaikki: X)");
             String vaihtoehto = lukija.nextLine();
-            if (vaihtoehto.equals("1")) {
-                System.out.println(pelaaja.getJoukkue());
+            if (vaihtoehto.toUpperCase().equals("1")) {
+                System.out.println(taistelu.getPelaaja().getJoukkue());
                 break;
-            } else if (vaihtoehto.equals("2")) {
-                System.out.println(vastustaja.getJoukkue());
+            } else if (vaihtoehto.toUpperCase().equals("2")) {
+                System.out.println(taistelu.getVastustaja().getJoukkue());
                 break;
-            } else if (vaihtoehto.equals("X")) {
-                System.out.println(pelaaja.getJoukkue());
-                System.out.println(vastustaja.getJoukkue());
+            } else if (vaihtoehto.toUpperCase().equals("X")) {
+                System.out.println(taistelu.getPelaaja().getJoukkue());
+                System.out.println(taistelu.getVastustaja().getJoukkue());
                 break;
             } else {
                 System.out.println("Väärä komento!");
@@ -84,7 +106,7 @@ public class Tekstikayttoliittyma {
         for (int y = 0; y < taistelu.getAreena().getAreena().length; y++) {
             for (int x = 0; x < taistelu.getAreena().getAreena()[y].length; x++) {
                 if (taistelu.getAreena().getAreena()[y][x].isKaytossa()) {
-                    System.out.print("[X]");
+                    System.out.print("["+ taistelu.getAreena().getAreena()[y][x].getGladiaattori().getPeliNumero() +"]");
                 } else {
                     System.out.print("[ ]");
                 }

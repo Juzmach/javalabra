@@ -18,9 +18,15 @@ public class Ruutu {
         this.ruudunX = x;
     }
 
-    public String haeKoordinaatit() {
-        return this.ruudunY + "," + this.ruudunX;
+    public int getRuudunY() {
+        return ruudunY;
     }
+
+    public int getRuudunX() {
+        return ruudunX;
+    }
+    
+    
 
     public void asetaGladiaattori(Gladiaattori asetettava) {
         if (this.kaytossa == false) {

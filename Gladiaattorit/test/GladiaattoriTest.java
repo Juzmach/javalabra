@@ -27,7 +27,7 @@ public class GladiaattoriTest {
 
     @Before
     public void setUp() {
-        taistelija = new Gladiaattori("Taavi");
+        taistelija = new Gladiaattori("Taavi",0);
     }
 
     @After

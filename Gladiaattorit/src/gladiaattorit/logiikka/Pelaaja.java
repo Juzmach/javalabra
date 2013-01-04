@@ -21,7 +21,7 @@ public class Pelaaja {
     private Joukkue luoJoukkue(String nimi) {
         Joukkue joukkue = new Joukkue(nimi);
         for (int i = 0; i < 8; i++) {
-            joukkue.lisaaGladiaattori(new Gladiaattori("Taistelija " + i));
+            joukkue.lisaaGladiaattori(new Gladiaattori("Taistelija",i));
         }
         return joukkue;
     }

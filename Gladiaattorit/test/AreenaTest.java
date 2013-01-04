@@ -34,8 +34,8 @@ public class AreenaTest {
         Joukkue taavi = new Joukkue("Taavin Tallaajat");
         
         for (int i = 0; i < 8; i++) {
-            teppo.lisaaGladiaattori(new Gladiaattori("" + i));
-            taavi.lisaaGladiaattori(new Gladiaattori("" + i));
+            teppo.lisaaGladiaattori(new Gladiaattori("",i));
+            taavi.lisaaGladiaattori(new Gladiaattori("",i));
         }
         
         areena = new Areena(teppo,taavi);

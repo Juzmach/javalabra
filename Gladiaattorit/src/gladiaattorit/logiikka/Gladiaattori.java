@@ -11,13 +11,15 @@ public class Gladiaattori {
     private int energia;
     private boolean elossa;
     private Ruutu ruutu;
+    private int peliNumero;
 
-    public Gladiaattori(String nimi) {
+    public Gladiaattori(String nimi,int peliNumero) {
         this.nimi = nimi;
         this.voima = 5;
         this.energia = 10;
         this.elossa = true;
         this.ruutu = null;
+        this.peliNumero = peliNumero;
     }
 
     public void asetaRuutu(Ruutu ruutu) {
@@ -43,6 +45,10 @@ public class Gladiaattori {
     @Override
     public String toString() {
         return nimi + "[" + "voima: " + voima + ", " + "energia: " + energia + "]";
+    }
+
+    public int getPeliNumero() {
+        return peliNumero;
     }
 
     public void vahennaEnergiaa(int maara) {
