@@ -9,10 +9,15 @@ package gladiaattorit.logiikka;
  * @author juzmach
  */
 public enum Suunta {
-    YLOS (1,0),
-    ALAS (-1,0),
-    VASEN(0,-1),
-    OIKEA(0,1);
+
+    PELAAJANYLOS(-1, 0),
+    PELAAJANALAS(1, 0),
+    PELAAJANVASEN(0, -1),
+    PELAAJANOIKEA(0, 1),
+    VASTUSTAJANYLOS(1, 0),
+    VASTUSTAJANALAS(-1, 0),
+    VASTUSTAJANVASEN(0, -1),
+    VASTUSTAJANOIKEA(0, 1);
     
     private final int y;
     private final int x;
@@ -29,6 +34,4 @@ public enum Suunta {
     public int getY() {
         return y;
     }
-    
-    
 }

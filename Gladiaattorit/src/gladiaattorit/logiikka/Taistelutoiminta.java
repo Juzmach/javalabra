@@ -32,9 +32,6 @@ public class Taistelutoiminta {
         }
     }
 
-    public void vuoro() {
-    }
-
     public String getKenenVuoro() {
         return kenenVuoro;
     }

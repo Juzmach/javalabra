@@ -65,21 +65,23 @@ public class Tekstikayttoliittyma {
     private void liikuta(){
         System.out.println("Valitse gladiaattori: (0-7)");
         int gladiaattorinNumero = Integer.parseInt(lukija.nextLine());
-        System.out.println("Valitse suunta: (Vasen, Oikea, Ylos, Alas");
+        System.out.println("Valitse suunta: (Vasen, Oikea, Ylos, Alas)");
         String suunta = lukija.nextLine();
-        Suunta valittuSuunta;
+        taistelu.liikutaGladiaattoria(taistelu.getPelaaja().getJoukkue().haeGladiaattori(gladiaattorinNumero), this.suunnanValinta(suunta));
+    }
+    
+    private Suunta suunnanValinta(String suunta){
         if(suunta.toUpperCase().equals("VASEN")){
-            valittuSuunta = Suunta.VASEN;
+            return Suunta.PELAAJANVASEN;
         } else if(suunta.toUpperCase().equals("OIKEA")){
-            valittuSuunta = Suunta.OIKEA;
+            return Suunta.PELAAJANOIKEA;
         } else if(suunta.toUpperCase().equals("YLOS")){
-            valittuSuunta = Suunta.YLOS;
+            return Suunta.PELAAJANYLOS;
         } else if(suunta.toUpperCase().equals("ALAS")){
-            valittuSuunta = Suunta.ALAS;
+            return Suunta.PELAAJANALAS;
         } else {
-            System.out.println("Väärä suunta!");
+            return null;
         }
-        taistelu.liikutaGladiaattoria(taistelu.getPelaaja().getJoukkue().haeGladiaattori(gladiaattorinNumero), Suunta.VASEN);
     }
 
     private void tulostaJoukkue() {

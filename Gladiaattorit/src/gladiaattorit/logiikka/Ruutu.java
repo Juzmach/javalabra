@@ -24,9 +24,7 @@ public class Ruutu {
 
     public int getRuudunX() {
         return ruudunX;
-    }
-    
-    
+    } 
 
     public void asetaGladiaattori(Gladiaattori asetettava) {
         if (this.kaytossa == false) {

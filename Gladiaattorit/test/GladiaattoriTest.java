@@ -1,4 +1,5 @@
 import gladiaattorit.logiikka.Gladiaattori;
+import gladiaattorit.logiikka.Ruutu;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -12,7 +13,9 @@ import static org.junit.Assert.*;
  */
 public class GladiaattoriTest {
 
-    public Gladiaattori taistelija;
+    private Gladiaattori taistelija;
+    private Ruutu ruutu;
+    private Ruutu ruutu2;
 
     public GladiaattoriTest() {
     }
@@ -28,6 +31,8 @@ public class GladiaattoriTest {
     @Before
     public void setUp() {
         taistelija = new Gladiaattori("Taavi",0);
+        ruutu = new Ruutu(3,3);
+        ruutu.asetaGladiaattori(taistelija);
     }
 
     @After
@@ -41,13 +46,32 @@ public class GladiaattoriTest {
 
     @Test
     public void vahennaEnergiaaEiVahennaAlleNollan() {
-        taistelija.vahennaEnergiaa(11);
+        taistelija.vahennaEnergiaa(taistelija.getEnergia()+1);
         assertEquals(0, taistelija.getEnergia());
     }
     
     @Test
     public void gladiaattoriKaatuuJosEnergiaOnNolla(){
+        taistelija.setEnergia(10);
         taistelija.vahennaEnergiaa(10);
         assertFalse("Gladiaattorin on vielä elossa!",taistelija.isElossa());
     }
+    
+    @Test
+    public void gladiaattoriEiLiikuJosRuutuKaytossa(){
+        ruutu2 = new Ruutu(3,4);
+        ruutu2.setKaytossa(true);
+        taistelija.liiku(ruutu2);
+        assertEquals(ruutu,taistelija.getRuutu());
+        
+    }
+    
+    @Test
+    public void gladiaattoriLiikkuuJosRuutuEiOleKaytossa(){
+        ruutu2 = new Ruutu(3,4);
+        ruutu.asetaGladiaattori(taistelija);
+        taistelija.liiku(ruutu2);
+        assertEquals(ruutu2,taistelija.getRuutu());
+    }
+    
 }

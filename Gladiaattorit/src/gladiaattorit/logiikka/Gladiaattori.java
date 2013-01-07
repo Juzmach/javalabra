@@ -13,10 +13,10 @@ public class Gladiaattori {
     private Ruutu ruutu;
     private int peliNumero;
 
-    public Gladiaattori(String nimi,int peliNumero) {
+    public Gladiaattori(String nimi, int peliNumero) {
         this.nimi = nimi;
-        this.voima = 5;
-        this.energia = 10;
+        this.voima = 3 + (int) (Math.random() * 6);
+        this.energia = 15 + (int) (Math.random() * 21);
         this.elossa = true;
         this.ruutu = null;
         this.peliNumero = peliNumero;
@@ -38,13 +38,17 @@ public class Gladiaattori {
         return energia;
     }
 
+    public void setEnergia(int energia) {
+        this.energia = energia;
+    }
+
     public Ruutu getRuutu() {
         return ruutu;
     }
 
     @Override
     public String toString() {
-        return nimi + "[" + "voima: " + voima + ", " + "energia: " + energia + "]";
+        return nimi + " " + peliNumero + " [" + "voima: " + voima + ", " + "energia: " + energia + "]";
     }
 
     public int getPeliNumero() {
@@ -55,6 +59,7 @@ public class Gladiaattori {
         if ((this.energia -= maara) <= 0) {
             this.energia = 0;
             this.elossa = false;
+            this.ruutu.setKaytossa(false);
 
         } else {
             this.energia -= maara;
@@ -63,8 +68,15 @@ public class Gladiaattori {
     }
 
     public void liiku(Ruutu uusiRuutu) {
-        ruutu.setKaytossa(false);
-        uusiRuutu.asetaGladiaattori(this);
-        this.ruutu = uusiRuutu;
+        if (!uusiRuutu.isKaytossa()) {
+            ruutu.setKaytossa(false);
+            uusiRuutu.asetaGladiaattori(this);
+            this.ruutu = uusiRuutu;
+        }
+    }
+
+    public void iske(Gladiaattori vastustaja) {
+        int damage = (int) (Math.random() * voima);
+        vastustaja.vahennaEnergiaa(damage);
     }
 }
