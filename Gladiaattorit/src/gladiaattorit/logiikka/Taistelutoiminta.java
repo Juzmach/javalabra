@@ -12,6 +12,13 @@ public class Taistelutoiminta {
     private Pelaaja vieras;
     private String kenenVuoro;
 
+    /**
+     *
+     * @param kotiNimi
+     * @param kotiJoukkueenNimi
+     * @param vierasNimi
+     * @param vierasJoukkueenNimi
+     */
     public Taistelutoiminta(String kotiNimi, String kotiJoukkueenNimi, String vierasNimi, String vierasJoukkueenNimi) {
         this.koti = new Pelaaja(kotiNimi, kotiJoukkueenNimi);
         this.vieras = new Pelaaja(vierasNimi, vierasJoukkueenNimi);
@@ -20,10 +27,19 @@ public class Taistelutoiminta {
         this.kenenVuoro = "Koti";
     }
 
+    /**
+     *
+     * @return
+     */
     public Areena getAreena() {
         return areena;
     }
 
+    /**
+     *
+     * @param liikutettava
+     * @param suunta
+     */
     public void liikuta(Gladiaattori liikutettava, Suunta suunta) {
         int uudenRuudunY = liikutettava.getRuutu().getRuudunY() + suunta.getY();
         int uudenRuudunX = liikutettava.getRuutu().getRuudunX() + suunta.getX();
@@ -45,14 +61,26 @@ public class Taistelutoiminta {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String getKenenVuoro() {
         return kenenVuoro;
     }
 
+    /**
+     *
+     * @param kenenVuoro
+     */
     public void setKenenVuoro(String kenenVuoro) {
         this.kenenVuoro = kenenVuoro;
     }
 
+    /**
+     *
+     * @return
+     */
     public Joukkue getVuorossaOlevaJoukkue() {
         if (kenenVuoro.equals("Koti")) {
             return koti.getJoukkue();
@@ -70,14 +98,26 @@ public class Taistelutoiminta {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public Pelaaja getKoti() {
         return koti;
     }
 
+    /**
+     *
+     * @return
+     */
     public Pelaaja getVieras() {
         return vieras;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getVuoroNumero() {
         return vuoroNumero;
     }

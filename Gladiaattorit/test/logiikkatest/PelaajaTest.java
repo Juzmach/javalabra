@@ -26,17 +26,29 @@ public class PelaajaTest {
     private Pelaaja vieras;
     private Areena areena;
 
+    /**
+     *
+     */
     public PelaajaTest() {
     }
 
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
     }
 
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
 
+    /**
+     *
+     */
     @Before
     public void setUp() {
         koti = new Pelaaja("Pelaaja", "pelaajanJoukkue");
@@ -44,6 +56,9 @@ public class PelaajaTest {
         areena = new Areena(koti.getJoukkue(), vieras.getJoukkue());
     }
 
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }
@@ -53,6 +68,9 @@ public class PelaajaTest {
     // @Test
     // public void hello() {}
 
+    /**
+     *
+     */
     @Test
     public void josGladiaattorinEdessaOnToinenGladiaattoriSeIskeeLiikkumisenSijaan() {
         int vastustajanEnergiaAlussa = vieras.getJoukkue().haeGladiaattori(1).getEnergia();
@@ -63,6 +81,9 @@ public class PelaajaTest {
         assertFalse("Taistelija ei iskenyt!", (vieras.getJoukkue().haeGladiaattori(1).getEnergia() == vastustajanEnergiaAlussa));
     }
 
+    /**
+     *
+     */
     @Test
     public void gladiaattoriEiIskeOmaaJoukkuekaveriaan() {
         int joukkuekaverinEnergiaAlussa = koti.getJoukkue().haeGladiaattori(1).getEnergia();

@@ -16,6 +16,11 @@ public class Areena {
     private Joukkue kotiJoukkue;
     private Joukkue vierasJoukkue;
 
+    /**
+     *
+     * @param kotiJoukkue
+     * @param vierasJoukkue
+     */
     public Areena(Joukkue kotiJoukkue, Joukkue vierasJoukkue) {
         this.areena = new Ruutu[8][8];
         this.kotiJoukkue = kotiJoukkue;
@@ -58,14 +63,26 @@ public class Areena {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public Ruutu[][] getAreena() {
         return areena;
     }
 
+    /**
+     *
+     * @return
+     */
     public Joukkue getKotiJoukkue() {
         return kotiJoukkue;
     }
 
+    /**
+     *
+     * @return
+     */
     public Joukkue getVierasJoukkue() {
         return vierasJoukkue;
     }

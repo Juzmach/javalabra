@@ -9,11 +9,21 @@ public class Pelaaja {
     private String nimi;
     private Joukkue joukkue;
 
+    /**
+     *
+     * @param nimi
+     * @param joukkueenNimi
+     */
     public Pelaaja(String nimi, String joukkueenNimi) {
         this.nimi = nimi;
         this.joukkue = this.luoJoukkue(joukkueenNimi);
     }
 
+    /**
+     *
+     * @param liikutettava
+     * @param uusiRuutu
+     */
     public void liikuta(Gladiaattori liikutettava, Ruutu uusiRuutu) {
         if (uusiRuutu.isKaytossa() && !joukkue.getGladiaattorit().contains(uusiRuutu.getGladiaattori())) {
             liikutettava.iske(uusiRuutu.getGladiaattori());
@@ -31,6 +41,10 @@ public class Pelaaja {
         return joukkue;
     }
 
+    /**
+     *
+     * @return
+     */
     public Joukkue getJoukkue() {
         return joukkue;
     }

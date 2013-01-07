@@ -20,17 +20,29 @@ public class GladiaattoriTest {
     private Ruutu ruutu;
     private Ruutu ruutu2;
 
+    /**
+     *
+     */
     public GladiaattoriTest() {
     }
 
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
     }
 
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
 
+    /**
+     *
+     */
     @Before
     public void setUp() {
         taistelija = new Gladiaattori("Taavi", 0);
@@ -39,21 +51,33 @@ public class GladiaattoriTest {
         ruutu.asetaGladiaattori(taistelija);
     }
 
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }
 
+    /**
+     *
+     */
     @Test
     public void gladiaattorinNimiEiOleTyhja() {
         assertFalse("Gladiaattorin nimi on tyhjä!", taistelija.getNimi().isEmpty());
     }
 
+    /**
+     *
+     */
     @Test
     public void vahennaEnergiaaEiVahennaAlleNollan() {
         taistelija.vahennaEnergiaa(taistelija.getEnergia() + 1);
         assertEquals(0, taistelija.getEnergia());
     }
 
+    /**
+     *
+     */
     @Test
     public void gladiaattoriKaatuuJosEnergiaOnNolla() {
         taistelija.setEnergia(10);
@@ -61,6 +85,9 @@ public class GladiaattoriTest {
         assertFalse("Gladiaattorin on vielä elossa!", taistelija.isElossa());
     }
 
+    /**
+     *
+     */
     @Test
     public void gladiaattoriEiLiikuJosRuutuKaytossa() {
         ruutu2.setKaytossa(true);
@@ -69,6 +96,9 @@ public class GladiaattoriTest {
 
     }
 
+    /**
+     *
+     */
     @Test
     public void gladiaattoriLiikkuuJosRuutuEiOleKaytossa() {
         ruutu.asetaGladiaattori(taistelija);
@@ -76,6 +106,9 @@ public class GladiaattoriTest {
         assertEquals(ruutu2, taistelija.getRuutu());
     }
     
+    /**
+     *
+     */
     @Test
     public void gladiaattoriEiLiikuJosKaatunut(){
         taistelija.vahennaEnergiaa(taistelija.getEnergia());
@@ -84,6 +117,9 @@ public class GladiaattoriTest {
         assertEquals("Taistelija liikkui!",vanhaRuutu,taistelija.getRuutu());
     }
     
+    /**
+     *
+     */
     @Test
     public void gladiaattoriLiikkuuYliJosVastustajaKaatunut(){
         Gladiaattori vastustaja = new Gladiaattori("Teppo",0);

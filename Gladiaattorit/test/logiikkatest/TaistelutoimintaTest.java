@@ -23,22 +23,37 @@ public class TaistelutoimintaTest {
 
     private Taistelutoiminta taistelu;
 
+    /**
+     *
+     */
     public TaistelutoimintaTest() {
     }
 
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
     }
 
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
 
+    /**
+     *
+     */
     @Before
     public void setUp() {
         taistelu = new Taistelutoiminta("koti", "kotijoukkue", "vieras", "vierasjoukkue");
     }
 
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }
@@ -48,6 +63,9 @@ public class TaistelutoimintaTest {
     // @Test
     // public void hello() {}
     
+    /**
+     *
+     */
     @Test
     public void liikutaGladiaattoriaMetodiLiikuttaaKotijoukkueenGladiaattoria(){
         taistelu.setKenenVuoro("Koti");
@@ -56,6 +74,9 @@ public class TaistelutoimintaTest {
         assertNotSame(vanhaRuutu,taistelu.getKoti().getJoukkue().haeGladiaattori(1).getRuutu());
     }
     
+    /**
+     *
+     */
     @Test
     public void vuoroVaihtuuKunGladiaattoriLiikkuu(){
         taistelu.liikuta(taistelu.getKoti().getJoukkue().haeGladiaattori(1), Suunta.KOTIETEEN);

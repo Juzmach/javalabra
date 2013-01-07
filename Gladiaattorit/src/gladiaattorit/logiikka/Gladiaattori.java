@@ -13,6 +13,11 @@ public class Gladiaattori {
     private Ruutu ruutu;
     private int peliNumero;
 
+    /**
+     *
+     * @param nimi
+     * @param peliNumero
+     */
     public Gladiaattori(String nimi, int peliNumero) {
         this.nimi = nimi;
         this.voima = 3 + (int) (Math.random() * 6);
@@ -22,26 +27,50 @@ public class Gladiaattori {
         this.peliNumero = peliNumero;
     }
 
+    /**
+     *
+     * @param ruutu
+     */
     public void asetaRuutu(Ruutu ruutu) {
         this.ruutu = ruutu;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNimi() {
         return nimi;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isElossa() {
         return elossa;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getEnergia() {
         return energia;
     }
 
+    /**
+     *
+     * @param energia
+     */
     public void setEnergia(int energia) {
         this.energia = energia;
     }
 
+    /**
+     *
+     * @return
+     */
     public Ruutu getRuutu() {
         return ruutu;
     }
@@ -51,10 +80,18 @@ public class Gladiaattori {
         return nimi + " " + peliNumero + " [" + "voima: " + voima + ", " + "energia: " + energia + "]";
     }
 
+    /**
+     *
+     * @return
+     */
     public int getPeliNumero() {
         return peliNumero;
     }
 
+    /**
+     *
+     * @param maara
+     */
     public void vahennaEnergiaa(int maara) {
         if ((this.energia -= maara) <= 0) {
             this.energia = 0;
@@ -67,6 +104,10 @@ public class Gladiaattori {
 
     }
 
+    /**
+     *
+     * @param uusiRuutu
+     */
     public void liiku(Ruutu uusiRuutu) {
         if (!uusiRuutu.isKaytossa() && uusiRuutu != null && this.elossa) {
             ruutu.setKaytossa(false);
@@ -75,6 +116,10 @@ public class Gladiaattori {
         }
     }
 
+    /**
+     *
+     * @param vastustaja
+     */
     public void iske(Gladiaattori vastustaja) {
         int damage = (int) (Math.random() * voima);
         vastustaja.vahennaEnergiaa(damage);

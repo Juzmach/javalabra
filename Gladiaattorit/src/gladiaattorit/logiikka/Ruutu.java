@@ -11,6 +11,11 @@ public class Ruutu {
     private int ruudunX;
     private int ruudunY;
 
+    /**
+     *
+     * @param y
+     * @param x
+     */
     public Ruutu(int y, int x) {
         this.gladiaattori = null;
         this.kaytossa = false;
@@ -18,14 +23,26 @@ public class Ruutu {
         this.ruudunX = x;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getRuudunY() {
         return ruudunY;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getRuudunX() {
         return ruudunX;
     }
 
+    /**
+     *
+     * @param asetettava
+     */
     public void asetaGladiaattori(Gladiaattori asetettava) {
         if (this.kaytossa == false) {
             this.gladiaattori = asetettava;
@@ -34,14 +51,26 @@ public class Ruutu {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public Gladiaattori getGladiaattori() {
         return gladiaattori;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isKaytossa() {
         return kaytossa;
     }
 
+    /**
+     *
+     * @param kaytossa
+     */
     public void setKaytossa(boolean kaytossa) {
         this.kaytossa = kaytossa;
     }

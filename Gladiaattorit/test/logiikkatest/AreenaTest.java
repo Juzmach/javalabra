@@ -18,19 +18,34 @@ import static org.junit.Assert.*;
  */
 public class AreenaTest {
 
+    /**
+     *
+     */
     public Areena areena;
 
+    /**
+     *
+     */
     public AreenaTest() {
     }
 
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
     }
 
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
 
+    /**
+     *
+     */
     @Before
     public void setUp() {
         Joukkue teppo = new Joukkue("Tepon Testaajat");
@@ -44,10 +59,16 @@ public class AreenaTest {
         areena = new Areena(teppo, taavi);
     }
 
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }
 
+    /**
+     *
+     */
     @Test
     public void areenaOikeanKokoinen() {
         int koko = 0;
@@ -61,16 +82,25 @@ public class AreenaTest {
         assertEquals(oikeaKoko, koko);
     }
 
+    /**
+     *
+     */
     @Test
     public void areenallaOnRuutujaJotkaEivätOleNull() {
         assertNotNull(areena.getAreena()[3][3]);
     }
 
+    /**
+     *
+     */
     @Test
     public void metodiAsetaJoukkueetAsettaaKotijoukkueenAreenalle() {
         assertNotNull(areena.getAreena()[6][3].getGladiaattori());
     }
 
+    /**
+     *
+     */
     @Test
     public void metodiAsetaJoukkueetAsettaaVierasjoukkueenAreenalle() {
         assertNotNull(areena.getAreena()[0][3].getGladiaattori());

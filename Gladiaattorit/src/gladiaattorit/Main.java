@@ -9,6 +9,10 @@ import java.util.Scanner;
  */
 public class Main {
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         Scanner lukija = new Scanner(System.in);
         Tekstikayttoliittyma teksti = new Tekstikayttoliittyma(lukija);

@@ -12,16 +12,28 @@ public class Liiga {
 
     private List<Joukkue> joukkueet;
 
+    /**
+     *
+     */
     public Liiga() {
         this.joukkueet = new ArrayList<Joukkue>();
     }
 
+    /**
+     *
+     * @param joukkue
+     */
     public void lisaaJoukkue(Joukkue joukkue) {
         if (!this.joukkueet.contains(joukkue)) {
             joukkueet.add(joukkue);
         }
     }
 
+    /**
+     *
+     * @param joukkueenNimi
+     * @return
+     */
     public Joukkue haeJoukkue(String joukkueenNimi) {
         if (!this.joukkueet.isEmpty()) {
             for (Joukkue joukkue : joukkueet) {

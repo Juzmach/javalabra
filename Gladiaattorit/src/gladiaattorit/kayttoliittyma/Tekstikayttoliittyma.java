@@ -17,6 +17,10 @@ public class Tekstikayttoliittyma {
     private Taistelutoiminta taistelu;
     private Scanner lukija;
 
+    /**
+     *
+     * @param lukija
+     */
     public Tekstikayttoliittyma(Scanner lukija) {
         this.lukija = lukija;
         this.alustus();
@@ -36,6 +40,9 @@ public class Tekstikayttoliittyma {
         this.taistelu = new Taistelutoiminta(kotiNimi, kotiJoukkueenNimi, vierasNimi, vierasJoukkueenNimi);
     }
 
+    /**
+     *
+     */
     public void kaynnista() {
         System.out.println("Taistelu alkaa!");
         System.out.println("Koti: " + taistelu.getKoti().getJoukkue().getNimi() + " Vieras: " + taistelu.getVieras().getJoukkue().getNimi());
