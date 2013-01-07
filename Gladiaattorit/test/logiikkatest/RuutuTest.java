@@ -1,3 +1,5 @@
+package logiikkatest;
+
 
 import gladiaattorit.logiikka.Areena;
 import gladiaattorit.logiikka.Gladiaattori;

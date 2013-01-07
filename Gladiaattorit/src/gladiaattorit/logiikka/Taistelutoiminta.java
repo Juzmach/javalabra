@@ -24,7 +24,7 @@ public class Taistelutoiminta {
         return areena;
     }
 
-    public void liikutaGladiaattoria(Gladiaattori liikutettava, Suunta suunta) {
+    public void liikuta(Gladiaattori liikutettava, Suunta suunta) {
         int uudenRuudunY = liikutettava.getRuutu().getRuudunY() + suunta.getY();
         int uudenRuudunX = liikutettava.getRuutu().getRuudunX() + suunta.getX();
         if (this.onkoRuutuAreenalla(uudenRuudunY,uudenRuudunX)) {

@@ -1,3 +1,5 @@
+package logiikkatest;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -50,13 +52,13 @@ public class TaistelutoimintaTest {
     public void liikutaGladiaattoriaMetodiLiikuttaaKotijoukkueenGladiaattoria(){
         taistelu.setKenenVuoro("Koti");
         Ruutu vanhaRuutu = taistelu.getKoti().getJoukkue().haeGladiaattori(1).getRuutu();
-        taistelu.liikutaGladiaattoria(taistelu.getVuorossaOlevaJoukkue().haeGladiaattori(1), Suunta.KOTIETEEN);
+        taistelu.liikuta(taistelu.getVuorossaOlevaJoukkue().haeGladiaattori(1), Suunta.KOTIETEEN);
         assertNotSame(vanhaRuutu,taistelu.getKoti().getJoukkue().haeGladiaattori(1).getRuutu());
     }
     
     @Test
     public void vuoroVaihtuuKunGladiaattoriLiikkuu(){
-        taistelu.liikutaGladiaattoria(taistelu.getKoti().getJoukkue().haeGladiaattori(1), Suunta.KOTIETEEN);
+        taistelu.liikuta(taistelu.getKoti().getJoukkue().haeGladiaattori(1), Suunta.KOTIETEEN);
         assertEquals("Vieras",taistelu.getKenenVuoro());
     }
 }

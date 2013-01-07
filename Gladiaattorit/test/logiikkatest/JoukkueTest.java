@@ -1,3 +1,5 @@
+package logiikkatest;
+
 
 import gladiaattorit.logiikka.Gladiaattori;
 import gladiaattorit.logiikka.Joukkue;

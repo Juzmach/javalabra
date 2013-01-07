@@ -76,7 +76,7 @@ public class Tekstikayttoliittyma {
         System.out.println("Valitse suunta: (Vasen, Oikea, Eteen, Taakse, Etuvasen, Etuoikea, Takavasen, Takaoikea)");
         String suunta = lukija.nextLine();
 
-        taistelu.liikutaGladiaattoria(taistelu.getVuorossaOlevaJoukkue().haeGladiaattori(gladiaattorinNumero), this.suunnanValinta(suunta));
+        taistelu.liikuta(taistelu.getVuorossaOlevaJoukkue().haeGladiaattori(gladiaattorinNumero), this.suunnanValinta(suunta));
 
     }
 
