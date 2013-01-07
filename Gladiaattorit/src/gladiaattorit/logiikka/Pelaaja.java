@@ -15,7 +15,7 @@ public class Pelaaja {
     }
 
     public void liikuta(Gladiaattori liikutettava, Ruutu uusiRuutu) {
-        if (uusiRuutu.isKaytossa()) {
+        if (uusiRuutu.isKaytossa() && !joukkue.getGladiaattorit().contains(uusiRuutu.getGladiaattori())) {
             liikutettava.iske(uusiRuutu.getGladiaattori());
             uusiRuutu.getGladiaattori().iske(liikutettava);
         } else {
@@ -25,7 +25,7 @@ public class Pelaaja {
 
     private Joukkue luoJoukkue(String nimi) {
         Joukkue joukkue = new Joukkue(nimi);
-        for (int i = 0; i < 8; i++) {
+        for (int i = 1; i <= 8; i++) {
             joukkue.lisaaGladiaattori(new Gladiaattori("Taistelija", i));
         }
         return joukkue;

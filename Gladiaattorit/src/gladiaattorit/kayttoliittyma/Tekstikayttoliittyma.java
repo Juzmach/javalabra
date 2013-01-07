@@ -23,17 +23,25 @@ public class Tekstikayttoliittyma {
     }
 
     private void alustus() {
+        System.out.println("- Koti -");
         System.out.println("Anna nimesi: ");
-        String pelaajanNimi = lukija.nextLine();
+        String kotiNimi = lukija.nextLine();
         System.out.println("Anna joukkueesi nimi: ");
-        String pelaajanJoukkueenNimi = lukija.nextLine();
-        this.taistelu = new Taistelutoiminta(pelaajanNimi,pelaajanJoukkueenNimi);
+        String kotiJoukkueenNimi = lukija.nextLine();
+        System.out.println("- Vieras - ");
+        System.out.println("Anna nimesi: ");
+        String vierasNimi = lukija.nextLine();
+        System.out.println("Anna joukkueesi nimi: ");
+        String vierasJoukkueenNimi = lukija.nextLine();
+        this.taistelu = new Taistelutoiminta(kotiNimi, kotiJoukkueenNimi, vierasNimi, vierasJoukkueenNimi);
     }
 
     public void kaynnista() {
-        this.tulostaKomennot();
-
+        System.out.println("Taistelu alkaa!");
+        System.out.println("Koti: " + taistelu.getKoti().getJoukkue().getNimi() + " Vieras: " + taistelu.getVieras().getJoukkue().getNimi());
         while (true) {
+            System.out.println("Vuorossa: " + taistelu.getKenenVuoro());
+            this.tulostaKomennot();
             String komento = lukija.nextLine();
             if (komento.toUpperCase().equals("X")) {
                 break;
@@ -47,7 +55,7 @@ public class Tekstikayttoliittyma {
             if (komento.equals("2")) {
                 this.tulostaJoukkue();
             }
-            if (komento.equals("3")){
+            if (komento.equals("3")) {
                 this.liikuta();
                 this.tulostaAreena();
             }
@@ -61,24 +69,66 @@ public class Tekstikayttoliittyma {
         System.out.println("2 - Tulosta joukkue");
         System.out.println("3 - Liikuta");
     }
-    
-    private void liikuta(){
-        System.out.println("Valitse gladiaattori: (0-7)");
+
+    private void liikuta() {
+        System.out.println("Valitse gladiaattori: (1-8)");
         int gladiaattorinNumero = Integer.parseInt(lukija.nextLine());
-        System.out.println("Valitse suunta: (Vasen, Oikea, Ylos, Alas)");
+        System.out.println("Valitse suunta: (Vasen, Oikea, Eteen, Taakse, Etuvasen, Etuoikea, Takavasen, Takaoikea)");
         String suunta = lukija.nextLine();
-        taistelu.liikutaGladiaattoria(taistelu.getPelaaja().getJoukkue().haeGladiaattori(gladiaattorinNumero), this.suunnanValinta(suunta));
+
+        taistelu.liikutaGladiaattoria(taistelu.getVuorossaOlevaJoukkue().haeGladiaattori(gladiaattorinNumero), this.suunnanValinta(suunta));
+
     }
-    
-    private Suunta suunnanValinta(String suunta){
-        if(suunta.toUpperCase().equals("VASEN")){
-            return Suunta.PELAAJANVASEN;
-        } else if(suunta.toUpperCase().equals("OIKEA")){
-            return Suunta.PELAAJANOIKEA;
-        } else if(suunta.toUpperCase().equals("YLOS")){
-            return Suunta.PELAAJANYLOS;
-        } else if(suunta.toUpperCase().equals("ALAS")){
-            return Suunta.PELAAJANALAS;
+
+    private Suunta suunnanValinta(String suunta) {
+        if (suunta.toUpperCase().equals("VASEN")) {
+            if (taistelu.getKenenVuoro().equals("Koti")) {
+                return Suunta.KOTIVASEN;
+            } else {
+                return Suunta.VIERASVASEN;
+            }
+        } else if (suunta.toUpperCase().equals("OIKEA")) {
+            if (taistelu.getKenenVuoro().equals("Koti")) {
+                return Suunta.KOTIOIKEA;
+            } else {
+                return Suunta.VIERASOIKEA;
+            }
+        } else if (suunta.toUpperCase().equals("ETEEN")) {
+            if (taistelu.getKenenVuoro().equals("Koti")) {
+                return Suunta.KOTIETEEN;
+            } else {
+                return Suunta.VIERASETEEN;
+            }
+        } else if (suunta.toUpperCase().equals("TAAKSE")) {
+            if (taistelu.getKenenVuoro().equals("Koti")) {
+                return Suunta.KOTITAAKSE;
+            } else {
+                return Suunta.VIERASTAAKSE;
+            }
+        } else if (suunta.toUpperCase().equals("ETUVASEN")) {
+            if (taistelu.getKenenVuoro().equals("Koti")) {
+                return Suunta.KOTIETUVASEN;
+            } else {
+                return Suunta.VIERASETUVASEN;
+            }
+        } else if (suunta.toUpperCase().equals("ETUOIKEA")) {
+            if (taistelu.getKenenVuoro().equals("Koti")) {
+                return Suunta.KOTIETUOIKEA;
+            } else {
+                return Suunta.VIERASETUOIKEA;
+            }
+        } else if (suunta.toUpperCase().equals("TAKAVASEN")) {
+            if (taistelu.getKenenVuoro().equals("Koti")) {
+                return Suunta.KOTITAKAVASEN;
+            } else {
+                return Suunta.VIERASTAKAVASEN;
+            }
+        } else if (suunta.toUpperCase().equals("TAKAOIKEA")) {
+            if (taistelu.getKenenVuoro().equals("Koti")) {
+                return Suunta.KOTITAKAOIKEA;
+            } else {
+                return Suunta.VIERASTAKAOIKEA;
+            }
         } else {
             return null;
         }
@@ -86,17 +136,17 @@ public class Tekstikayttoliittyma {
 
     private void tulostaJoukkue() {
         while (true) {
-            System.out.println("Mikä joukkue? (Pelaaja: 1, Vastustaja: 2, Kaikki: X)");
+            System.out.println("Mikä joukkue? (Koti: 1, Vieras: 2, Kaikki: X)");
             String vaihtoehto = lukija.nextLine();
             if (vaihtoehto.toUpperCase().equals("1")) {
-                System.out.println(taistelu.getPelaaja().getJoukkue());
+                System.out.println(taistelu.getKoti().getJoukkue());
                 break;
             } else if (vaihtoehto.toUpperCase().equals("2")) {
-                System.out.println(taistelu.getVastustaja().getJoukkue());
+                System.out.println(taistelu.getVieras().getJoukkue());
                 break;
             } else if (vaihtoehto.toUpperCase().equals("X")) {
-                System.out.println(taistelu.getPelaaja().getJoukkue());
-                System.out.println(taistelu.getVastustaja().getJoukkue());
+                System.out.println(taistelu.getKoti().getJoukkue());
+                System.out.println(taistelu.getVieras().getJoukkue());
                 break;
             } else {
                 System.out.println("Väärä komento!");
@@ -108,7 +158,7 @@ public class Tekstikayttoliittyma {
         for (int y = 0; y < taistelu.getAreena().getAreena().length; y++) {
             for (int x = 0; x < taistelu.getAreena().getAreena()[y].length; x++) {
                 if (taistelu.getAreena().getAreena()[y][x].isKaytossa()) {
-                    System.out.print("["+ taistelu.getAreena().getAreena()[y][x].getGladiaattori().getPeliNumero() +"]");
+                    System.out.print("[" + taistelu.getAreena().getAreena()[y][x].getGladiaattori().getPeliNumero() + "]");
                 } else {
                     System.out.print("[ ]");
                 }

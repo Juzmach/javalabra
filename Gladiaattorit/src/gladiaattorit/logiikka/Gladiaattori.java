@@ -68,7 +68,7 @@ public class Gladiaattori {
     }
 
     public void liiku(Ruutu uusiRuutu) {
-        if (!uusiRuutu.isKaytossa()) {
+        if (!uusiRuutu.isKaytossa() && uusiRuutu != null && this.elossa) {
             ruutu.setKaytossa(false);
             uusiRuutu.asetaGladiaattori(this);
             this.ruutu = uusiRuutu;

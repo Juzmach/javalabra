@@ -1,3 +1,4 @@
+
 import gladiaattorit.logiikka.Areena;
 import gladiaattorit.logiikka.Gladiaattori;
 import gladiaattorit.logiikka.Joukkue;
@@ -32,13 +33,13 @@ public class AreenaTest {
     public void setUp() {
         Joukkue teppo = new Joukkue("Tepon Testaajat");
         Joukkue taavi = new Joukkue("Taavin Tallaajat");
-        
+
         for (int i = 0; i < 8; i++) {
-            teppo.lisaaGladiaattori(new Gladiaattori("",i));
-            taavi.lisaaGladiaattori(new Gladiaattori("",i));
+            teppo.lisaaGladiaattori(new Gladiaattori("", i));
+            taavi.lisaaGladiaattori(new Gladiaattori("", i));
         }
-        
-        areena = new Areena(teppo,taavi);
+
+        areena = new Areena(teppo, taavi);
     }
 
     @After
@@ -57,22 +58,19 @@ public class AreenaTest {
         }
         assertEquals(oikeaKoko, koko);
     }
-    
+
     @Test
-    public void areenallaOnRuutujaJotkaEivätOleNull(){
+    public void areenallaOnRuutujaJotkaEivätOleNull() {
         assertNotNull(areena.getAreena()[3][3]);
     }
-    
+
     @Test
-    public void metodiAsetaJoukkueetAsettaaKotijoukkueenAreenalle(){
+    public void metodiAsetaJoukkueetAsettaaKotijoukkueenAreenalle() {
         assertNotNull(areena.getAreena()[6][3].getGladiaattori());
     }
-    
+
     @Test
-    public void metodiAsetaJoukkueetAsettaaVierasjoukkueenAreenalle(){
+    public void metodiAsetaJoukkueetAsettaaVierasjoukkueenAreenalle() {
         assertNotNull(areena.getAreena()[0][3].getGladiaattori());
     }
-    
-    
-   
 }

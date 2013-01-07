@@ -37,25 +37,23 @@ public class RuutuTest {
     @After
     public void tearDown() {
     }
-    
+
     @Test
-    public void asetaGladiaattoriEiAsetaGladiaattoriaJosRuutuOnKaytossa(){
-        Gladiaattori teppo = new Gladiaattori("Teppo",0);
-        Gladiaattori taavi = new Gladiaattori("Taavi",0);
-        
+    public void asetaGladiaattoriEiAsetaGladiaattoriaJosRuutuOnKaytossa() {
+        Gladiaattori teppo = new Gladiaattori("Teppo", 0);
+        Gladiaattori taavi = new Gladiaattori("Taavi", 0);
+
         ruutu.asetaGladiaattori(teppo);
         ruutu.asetaGladiaattori(taavi);
-        
-        assertEquals(teppo,ruutu.getGladiaattori());
+
+        assertEquals(teppo, ruutu.getGladiaattori());
     }
-    
+
     @Test
-    public void ruudunGladiaattorinRuutuEiOleNull(){
-        Gladiaattori teppo = new Gladiaattori("Teppo",0);
+    public void ruudunGladiaattorinRuutuEiOleNull() {
+        Gladiaattori teppo = new Gladiaattori("Teppo", 0);
         ruutu.asetaGladiaattori(teppo);
-        
+
         assertNotNull(ruutu.getGladiaattori().getRuutu());
     }
-    
-    
 }

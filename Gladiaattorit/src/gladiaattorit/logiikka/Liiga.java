@@ -8,7 +8,6 @@ import java.util.List;
  * @author juusostr
  */
 // TÄMÄ LUOKKA EI OLE VIELÄ KÄYTÖSSÄ
-
 public class Liiga {
 
     private List<Joukkue> joukkueet;

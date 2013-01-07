@@ -1,3 +1,4 @@
+
 import gladiaattorit.logiikka.Gladiaattori;
 import gladiaattorit.logiikka.Ruutu;
 import org.junit.After;
@@ -30,8 +31,8 @@ public class GladiaattoriTest {
 
     @Before
     public void setUp() {
-        taistelija = new Gladiaattori("Taavi",0);
-        ruutu = new Ruutu(3,3);
+        taistelija = new Gladiaattori("Taavi", 0);
+        ruutu = new Ruutu(3, 3);
         ruutu.asetaGladiaattori(taistelija);
     }
 
@@ -46,32 +47,39 @@ public class GladiaattoriTest {
 
     @Test
     public void vahennaEnergiaaEiVahennaAlleNollan() {
-        taistelija.vahennaEnergiaa(taistelija.getEnergia()+1);
+        taistelija.vahennaEnergiaa(taistelija.getEnergia() + 1);
         assertEquals(0, taistelija.getEnergia());
     }
-    
+
     @Test
-    public void gladiaattoriKaatuuJosEnergiaOnNolla(){
+    public void gladiaattoriKaatuuJosEnergiaOnNolla() {
         taistelija.setEnergia(10);
         taistelija.vahennaEnergiaa(10);
-        assertFalse("Gladiaattorin on vielä elossa!",taistelija.isElossa());
+        assertFalse("Gladiaattorin on vielä elossa!", taistelija.isElossa());
     }
-    
+
     @Test
-    public void gladiaattoriEiLiikuJosRuutuKaytossa(){
-        ruutu2 = new Ruutu(3,4);
+    public void gladiaattoriEiLiikuJosRuutuKaytossa() {
+        ruutu2 = new Ruutu(3, 4);
         ruutu2.setKaytossa(true);
         taistelija.liiku(ruutu2);
-        assertEquals(ruutu,taistelija.getRuutu());
-        
+        assertEquals(ruutu, taistelija.getRuutu());
+
+    }
+
+    @Test
+    public void gladiaattoriLiikkuuJosRuutuEiOleKaytossa() {
+        ruutu2 = new Ruutu(3, 4);
+        ruutu.asetaGladiaattori(taistelija);
+        taistelija.liiku(ruutu2);
+        assertEquals(ruutu2, taistelija.getRuutu());
     }
     
     @Test
-    public void gladiaattoriLiikkuuJosRuutuEiOleKaytossa(){
-        ruutu2 = new Ruutu(3,4);
-        ruutu.asetaGladiaattori(taistelija);
-        taistelija.liiku(ruutu2);
-        assertEquals(ruutu2,taistelija.getRuutu());
+    public void gladiaattoriEiLiikuJosKaatunut(){
+        taistelija.vahennaEnergiaa(taistelija.getEnergia());
+        Ruutu vanhaRuutu = taistelija.getRuutu();
+        taistelija.liiku(new Ruutu(4,4));
+        assertEquals("Taistelija liikkui!",vanhaRuutu,taistelija.getRuutu());
     }
-    
 }

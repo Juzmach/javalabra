@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 
+import gladiaattorit.logiikka.Areena;
 import gladiaattorit.logiikka.Gladiaattori;
 import gladiaattorit.logiikka.Pelaaja;
 import gladiaattorit.logiikka.Ruutu;
@@ -18,24 +19,29 @@ import static org.junit.Assert.*;
  * @author juzmach
  */
 public class PelaajaTest {
-    private Pelaaja pelaaja;
-    
+
+    private Pelaaja koti;
+    private Pelaaja vieras;
+    private Areena areena;
+
     public PelaajaTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
-        pelaaja = new Pelaaja("Pelaaja","pelaajanJoukkue");
+        koti = new Pelaaja("Pelaaja", "pelaajanJoukkue");
+        vieras = new Pelaaja("Vastustaja", "vastustajanJoukkue");
+        areena = new Areena(koti.getJoukkue(), vieras.getJoukkue());
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -44,19 +50,21 @@ public class PelaajaTest {
     //
     // @Test
     // public void hello() {}
-    
+
     @Test
-    public void josGladiaattorinEdessaOnToinenGladiaattoriSeIskeeLiikkumisenSijaan(){
-        Gladiaattori taistelija = new Gladiaattori("Taavi",1);
-        Gladiaattori vastustaja = new Gladiaattori("Teppo",2);
-        Ruutu taistelijanRuutu = new Ruutu(3,3);
-        Ruutu vastustajanRuutu = new Ruutu(3,4);
-        taistelijanRuutu.asetaGladiaattori(taistelija);
-        vastustajanRuutu.asetaGladiaattori(vastustaja);
-        int vastustajanEnergiaAlussa = vastustaja.getEnergia();
+    public void josGladiaattorinEdessaOnToinenGladiaattoriSeIskeeLiikkumisenSijaan() {
+        int vastustajanEnergiaAlussa = vieras.getJoukkue().haeGladiaattori(1).getEnergia();
+        koti.liikuta(koti.getJoukkue().haeGladiaattori(1), areena.getAreena()[3][3]);
+        vieras.liikuta(vieras.getJoukkue().haeGladiaattori(1), areena.getAreena()[3][4]);
+        koti.liikuta(koti.getJoukkue().haeGladiaattori(1), vieras.getJoukkue().haeGladiaattori(1).getRuutu());
         
-        pelaaja.liikuta(taistelija, vastustajanRuutu);
-        
-        assertFalse("Taistelija ei iskenyt!",(vastustaja.getEnergia() == vastustajanEnergiaAlussa));
+        assertFalse("Taistelija ei iskenyt!", (vieras.getJoukkue().haeGladiaattori(1).getEnergia() == vastustajanEnergiaAlussa));
+    }
+
+    @Test
+    public void gladiaattoriEiIskeOmaaJoukkuekaveriaan() {
+        int joukkuekaverinEnergiaAlussa = koti.getJoukkue().haeGladiaattori(1).getEnergia();
+        koti.liikuta(koti.getJoukkue().haeGladiaattori(1), koti.getJoukkue().haeGladiaattori(2).getRuutu());
+        assertEquals(joukkuekaverinEnergiaAlussa, koti.getJoukkue().haeGladiaattori(1).getEnergia());
     }
 }

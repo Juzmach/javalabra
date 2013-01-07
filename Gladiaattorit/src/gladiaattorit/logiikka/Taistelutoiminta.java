@@ -8,16 +8,16 @@ public class Taistelutoiminta {
 
     private Areena areena;
     private int vuoroNumero;
-    private Pelaaja pelaaja;
-    private Pelaaja vastustaja;
+    private Pelaaja koti;
+    private Pelaaja vieras;
     private String kenenVuoro;
 
-    public Taistelutoiminta(String pelaajanNimi,String pelaajanJoukkueenNimi) {
-        this.pelaaja = new Pelaaja(pelaajanNimi,pelaajanJoukkueenNimi);
-        this.vastustaja = new Pelaaja("Hodor", "Hodorin Hurjat");
-        this.areena = new Areena(pelaaja.getJoukkue(), vastustaja.getJoukkue());
+    public Taistelutoiminta(String kotiNimi, String kotiJoukkueenNimi, String vierasNimi, String vierasJoukkueenNimi) {
+        this.koti = new Pelaaja(kotiNimi, kotiJoukkueenNimi);
+        this.vieras = new Pelaaja(vierasNimi, vierasJoukkueenNimi);
+        this.areena = new Areena(koti.getJoukkue(), vieras.getJoukkue());
         this.vuoroNumero = 0;
-        this.kenenVuoro = "Pelaaja";
+        this.kenenVuoro = "Koti";
     }
 
     public Areena getAreena() {
@@ -25,10 +25,23 @@ public class Taistelutoiminta {
     }
 
     public void liikutaGladiaattoria(Gladiaattori liikutettava, Suunta suunta) {
-        if (this.kenenVuoro.equals("Pelaaja")) {
-            pelaaja.liikuta(liikutettava, areena.getAreena()[liikutettava.getRuutu().getRuudunY() + suunta.getY()][liikutettava.getRuutu().getRuudunX() + suunta.getX()]);
+        int uudenRuudunY = liikutettava.getRuutu().getRuudunY() + suunta.getY();
+        int uudenRuudunX = liikutettava.getRuutu().getRuudunX() + suunta.getX();
+        if (this.onkoRuutuAreenalla(uudenRuudunY,uudenRuudunX)) {
+            if (this.kenenVuoro.equals("Koti")) {
+                koti.liikuta(liikutettava, areena.getAreena()[uudenRuudunY][uudenRuudunX]);
+            } else {
+                vieras.liikuta(liikutettava, areena.getAreena()[uudenRuudunY][uudenRuudunX]);
+            }
+            this.vaihdaVuoroa();
+        }
+    }
+
+    private boolean onkoRuutuAreenalla(int uudenRuudunY,int uudenRuudunX) {
+        if (uudenRuudunY <= areena.getAreena().length -1 && uudenRuudunY >= 0 && uudenRuudunX <= areena.getAreena()[uudenRuudunY].length -1 && uudenRuudunX >= 0) {
+            return true;
         } else {
-            vastustaja.liikuta(liikutettava, areena.getAreena()[liikutettava.getRuutu().getRuudunY() + suunta.getY()][liikutettava.getRuutu().getRuudunX() + suunta.getX()]);
+            return false;
         }
     }
 
@@ -36,26 +49,36 @@ public class Taistelutoiminta {
         return kenenVuoro;
     }
 
-    private void vaihdaVuoroa() {
-        this.vuoroNumero++;
-        if (this.vuoroNumero % 2 == 0) {
-            this.kenenVuoro = "Pelaaja";
+    public void setKenenVuoro(String kenenVuoro) {
+        this.kenenVuoro = kenenVuoro;
+    }
+
+    public Joukkue getVuorossaOlevaJoukkue() {
+        if (kenenVuoro.equals("Koti")) {
+            return koti.getJoukkue();
         } else {
-            this.kenenVuoro = "Vastustaja";
+            return vieras.getJoukkue();
         }
     }
 
-    public Pelaaja getPelaaja() {
-        return pelaaja;
+    private void vaihdaVuoroa() {
+        this.vuoroNumero++;
+        if (this.vuoroNumero % 2 == 0) {
+            this.kenenVuoro = "Koti";
+        } else {
+            this.kenenVuoro = "Vieras";
+        }
     }
 
-    public Pelaaja getVastustaja() {
-        return vastustaja;
+    public Pelaaja getKoti() {
+        return koti;
+    }
+
+    public Pelaaja getVieras() {
+        return vieras;
     }
 
     public int getVuoroNumero() {
         return vuoroNumero;
     }
-    
-    
 }

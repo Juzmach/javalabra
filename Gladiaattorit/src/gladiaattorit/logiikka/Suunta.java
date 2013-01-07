@@ -10,15 +10,22 @@ package gladiaattorit.logiikka;
  */
 public enum Suunta {
 
-    PELAAJANYLOS(-1, 0),
-    PELAAJANALAS(1, 0),
-    PELAAJANVASEN(0, -1),
-    PELAAJANOIKEA(0, 1),
-    VASTUSTAJANYLOS(1, 0),
-    VASTUSTAJANALAS(-1, 0),
-    VASTUSTAJANVASEN(0, -1),
-    VASTUSTAJANOIKEA(0, 1);
-    
+    KOTIETEEN(-1, 0),
+    KOTITAAKSE(1, 0),
+    KOTIVASEN(0, -1),
+    KOTIOIKEA(0, 1),
+    KOTIETUVASEN(-1, -1),
+    KOTIETUOIKEA(-1, 1),
+    KOTITAKAVASEN(1, -1),
+    KOTITAKAOIKEA(1, 1),
+    VIERASETEEN(1, 0),
+    VIERASTAAKSE(-1, 0),
+    VIERASVASEN(0, -1),
+    VIERASOIKEA(0, 1),
+    VIERASETUVASEN(1, -1),
+    VIERASETUOIKEA(1, 1),
+    VIERASTAKAVASEN(-1, -1),
+    VIERASTAKAOIKEA(-1, 1);
     private final int y;
     private final int x;
 

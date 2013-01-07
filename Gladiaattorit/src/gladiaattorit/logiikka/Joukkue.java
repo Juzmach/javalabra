@@ -44,8 +44,8 @@ public class Joukkue {
         }
         return null;
     }
-    
-    public Gladiaattori haeGladiaattori(int peliNumero){
+
+    public Gladiaattori haeGladiaattori(int peliNumero) {
         if (!gladiaattorit.isEmpty()) {
             for (Gladiaattori gladiaattori : this.gladiaattorit) {
                 if (gladiaattori.getPeliNumero() == peliNumero) {
