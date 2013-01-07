@@ -5,18 +5,33 @@ package gladiaattorit.logiikka;
  * @author juzmach
  */
 public class Gladiaattori {
-
+    
+    /**
+     * Gladiaattorin nimi
+     */
     private String nimi;
+    /**
+     * Gladiaattorin iskuvoima
+     */
     private int voima;
+    /**
+     * Gladiaattorin energia
+     */
     private int energia;
+    /**
+     * Kertoo, onko gladiaattori elossa vai ei
+     */
     private boolean elossa;
+    /**
+     * Ruutu, missä gladiaattori on
+     */
     private Ruutu ruutu;
     private int peliNumero;
 
     /**
-     *
-     * @param nimi
-     * @param peliNumero
+     * 
+     * @param nimi Gladiaattorin nimi
+     * @param peliNumero Gladiaattorin pelinumero
      */
     public Gladiaattori(String nimi, int peliNumero) {
         this.nimi = nimi;
@@ -89,8 +104,8 @@ public class Gladiaattori {
     }
 
     /**
-     *
-     * @param maara
+     * Vähentää gladiaattorin energiaa toisen gladiaattorin aiheuttaman vahingon verran.
+     * @param maara "Damage" eli toisen gladiaattorin aiheuttama vahinko
      */
     public void vahennaEnergiaa(int maara) {
         if ((this.energia -= maara) <= 0) {
@@ -105,8 +120,8 @@ public class Gladiaattori {
     }
 
     /**
-     *
-     * @param uusiRuutu
+     * Siirtää gladiaattorin seuraavalle ruudulle
+     * @param uusiRuutu Gladiaattorin uusi ruutu
      */
     public void liiku(Ruutu uusiRuutu) {
         if (!uusiRuutu.isKaytossa() && uusiRuutu != null && this.elossa) {
@@ -117,8 +132,8 @@ public class Gladiaattori {
     }
 
     /**
-     *
-     * @param vastustaja
+     * Aiheuttaa parametrin gladiaattorille satunnaisen määrän vahinkoa
+     * @param vastustaja Gladiaattori, jota lyödään
      */
     public void iske(Gladiaattori vastustaja) {
         int damage = (int) (Math.random() * voima);

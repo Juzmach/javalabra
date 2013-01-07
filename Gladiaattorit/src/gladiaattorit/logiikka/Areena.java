@@ -18,8 +18,8 @@ public class Areena {
 
     /**
      *
-     * @param kotiJoukkue
-     * @param vierasJoukkue
+     * @param kotiJoukkue "Kotijoukkueena" pelaavan pelaajan joukkue
+     * @param vierasJoukkue "Vierasjoukkueena" pelaavan pelaajan joukkue
      */
     public Areena(Joukkue kotiJoukkue, Joukkue vierasJoukkue) {
         this.areena = new Ruutu[8][8];
@@ -29,11 +29,21 @@ public class Areena {
         this.asetaJoukkueet();
     }
 
+    /**
+     * Asettaa molemmat joukkueet areenalle
+     */
     private void asetaJoukkueet() {
         this.asetaJoukkue(vierasJoukkue, 0);
         this.asetaJoukkue(kotiJoukkue, 6);
     }
 
+    /**
+     * Asettaa yhden joukkueen gladiaattorit oikeisiin ruutuihin.
+     * Jos kyseessä on kotijoukkue, asettaa se gladiaattorit areenan alareunaan.
+     * Jos on vierasjoukkue, asettaa se gladiaattorit yläreunaan.
+     * @param asetettavaJoukkue Asetettava joukkue
+     * @param alkuY Joukkueen ensimmäisen rivin määrittävä apumetodi
+     */
     private void asetaJoukkue(Joukkue asetettavaJoukkue, int alkuY) {
         ArrayList<Gladiaattori> asetettavatGladiaattorit = new ArrayList<Gladiaattori>();
         for (Gladiaattori asetettava : asetettavaJoukkue.getGladiaattorit()) {
@@ -55,6 +65,9 @@ public class Areena {
         }
     }
 
+    /**
+     * Alustaa kaksiulotteisen Ruutu-taulukon Ruutu-oliot
+     */
     private void asetaRuudut() {
         for (int y = 0; y < areena.length; y++) {
             for (int x = 0; x < areena[y].length; x++) {
@@ -65,7 +78,7 @@ public class Areena {
 
     /**
      *
-     * @return
+     * @return Kaksiulotteisen taulukon, jossa Ruutu-olioita
      */
     public Ruutu[][] getAreena() {
         return areena;
@@ -73,7 +86,7 @@ public class Areena {
 
     /**
      *
-     * @return
+     * @return Kotijoukkueen Joukkue-olion
      */
     public Joukkue getKotiJoukkue() {
         return kotiJoukkue;
@@ -81,7 +94,7 @@ public class Areena {
 
     /**
      *
-     * @return
+     * @return Vierasjoukkueen Vieras-olion
      */
     public Joukkue getVierasJoukkue() {
         return vierasJoukkue;
