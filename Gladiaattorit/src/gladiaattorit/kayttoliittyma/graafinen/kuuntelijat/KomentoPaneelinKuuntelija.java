@@ -28,11 +28,7 @@ public class KomentoPaneelinKuuntelija implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        komentopaneeli.getKomentoruutu().setText(komentopaneeli.getKomentorivi().getText());
-            
         
-        komentopaneeli.paivita();
     }
-    
-    
+
 }

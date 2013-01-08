@@ -34,7 +34,7 @@ public class Kayttoliittyma implements Runnable {
         frame = new JFrame("Gladiaattorit");
         Dimension size = new Dimension(600, 500);
         frame.setPreferredSize(size);
-        frame.setResizable(false);
+        frame.setResizable(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         luoKomponentit(frame.getContentPane());
         
