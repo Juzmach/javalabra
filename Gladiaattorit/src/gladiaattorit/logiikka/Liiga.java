@@ -10,10 +10,13 @@ import java.util.List;
 // TÄMÄ LUOKKA EI OLE VIELÄ KÄYTÖSSÄ
 public class Liiga {
 
+    /**
+     * Lista liigassa olevista joukkueista
+     */
     private List<Joukkue> joukkueet;
 
     /**
-     *
+     * 
      */
     public Liiga() {
         this.joukkueet = new ArrayList<Joukkue>();
@@ -30,9 +33,9 @@ public class Liiga {
     }
 
     /**
-     *
+     * Hakee joukkueen nimen mukaan
      * @param joukkueenNimi
-     * @return
+     * @return Joukkue, jolla parametrina annettu nimi
      */
     public Joukkue haeJoukkue(String joukkueenNimi) {
         if (!this.joukkueet.isEmpty()) {

@@ -1,11 +1,11 @@
-package gladiaattorit.kayttoliittyma;
+package gladiaattorit.kayttoliittyma.tekstikayttoliittyma;
 
 import gladiaattorit.logiikka.Areena;
 import gladiaattorit.logiikka.Gladiaattori;
 import gladiaattorit.logiikka.Joukkue;
 import gladiaattorit.logiikka.Pelaaja;
 import gladiaattorit.logiikka.Suunta;
-import gladiaattorit.logiikka.Taistelutoiminta;
+import gladiaattorit.logiikka.Taistelupeli;
 import java.util.Scanner;
 
 /**
@@ -14,7 +14,7 @@ import java.util.Scanner;
  */
 public class Tekstikayttoliittyma {
 
-    private Taistelutoiminta taistelu;
+    private Taistelupeli taistelu;
     private Scanner lukija;
 
     /**
@@ -37,7 +37,7 @@ public class Tekstikayttoliittyma {
         String vierasNimi = lukija.nextLine();
         System.out.println("Anna joukkueesi nimi: ");
         String vierasJoukkueenNimi = lukija.nextLine();
-        this.taistelu = new Taistelutoiminta(kotiNimi, kotiJoukkueenNimi, vierasNimi, vierasJoukkueenNimi);
+        this.taistelu = new Taistelupeli(kotiNimi, kotiJoukkueenNimi, vierasNimi, vierasJoukkueenNimi);
     }
 
     /**
@@ -47,6 +47,12 @@ public class Tekstikayttoliittyma {
         System.out.println("Taistelu alkaa!");
         System.out.println("Koti: " + taistelu.getKoti().getJoukkue().getNimi() + " Vieras: " + taistelu.getVieras().getJoukkue().getNimi());
         while (true) {
+            if(taistelu.onkoPeliPaattynyt()){
+                System.out.println("Peli on päättynyt!");
+                System.out.println("Voittaja: " + taistelu.getVoittajaJoukkue().getNimi());
+                this.tulostaAreena();
+                break;
+            }
             System.out.println("Vuorossa: " + taistelu.getKenenVuoro());
             this.tulostaKomennot();
             String komento = lukija.nextLine();
@@ -83,8 +89,12 @@ public class Tekstikayttoliittyma {
         System.out.println("Valitse suunta: (Vasen, Oikea, Eteen, Taakse, Etuvasen, Etuoikea, Takavasen, Takaoikea)");
         String suunta = lukija.nextLine();
 
-        taistelu.liikuta(taistelu.getVuorossaOlevaJoukkue().haeGladiaattori(gladiaattorinNumero), this.suunnanValinta(suunta));
+        this.liiku(gladiaattorinNumero, suunta);
 
+    }
+    
+    private void liiku(int gladiaattorinNumero, String suunta){
+        taistelu.liikuta(taistelu.getVuorossaOlevaJoukkue().haeGladiaattori(gladiaattorinNumero), this.suunnanValinta(suunta));
     }
 
     private Suunta suunnanValinta(String suunta) {

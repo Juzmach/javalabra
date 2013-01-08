@@ -3,6 +3,7 @@ package logiikkatest;
 
 import gladiaattorit.logiikka.Gladiaattori;
 import gladiaattorit.logiikka.Joukkue;
+import gladiaattorit.logiikka.Ruutu;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -98,6 +99,24 @@ public class JoukkueTest {
     public void joukkueenKokoOnNollaJosEiYhtaanGladiaattoriaLisatty() {
         assertEquals(0, joukkue.getJoukkueenKoko());
     }
+    
+    private void luoHalutunKokoinenJoukkue(int koko){
+        for (int i = 0; i < koko; i++) {
+            Gladiaattori lisattava = new Gladiaattori("Testi",i);
+            lisattava.asetaRuutu(new Ruutu(i,i));
+            joukkue.lisaaGladiaattori(lisattava);
+        }
+    }
+    
+    @Test
+    public void onkoJoukkueElossaMetodiPalauttaaTrueJosKaikkiOvatKuolleet(){
+        this.luoHalutunKokoinenJoukkue(8);
+        for (Gladiaattori gladiaattori : joukkue.getGladiaattorit()) {
+            gladiaattori.vahennaEnergiaa(gladiaattori.getEnergia());
+        }
+        assertTrue("onkoJoukkueElossa()-metodin pitäisi palauttaa true!",joukkue.onkoJoukkueKuollut());
+    }
+    
 //    @Test
 //    public void haeGladiaattoriMetodiHakeeOikeanGladiaattorinPelinumerolla(){
 //        

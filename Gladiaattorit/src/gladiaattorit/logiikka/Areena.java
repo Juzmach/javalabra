@@ -12,8 +12,17 @@ import java.util.ArrayList;
  */
 public class Areena {
 
+    /**
+     * Kaksiulotteinen taulukko, jossa areenan Ruutu-oliot
+     */
     private Ruutu[][] areena;
+    /**
+     * "Koti"-pelaajan joukkue
+     */
     private Joukkue kotiJoukkue;
+    /**
+     * "Vieras"-pelaajan joukkue
+     */
     private Joukkue vierasJoukkue;
 
     /**
@@ -30,7 +39,7 @@ public class Areena {
     }
 
     /**
-     * Asettaa molemmat joukkueet areenalle
+     * Asettaa molemmat joukkueet areenalle käyttäen asetaJoukkue(Joukkue, int) metodia.
      */
     private void asetaJoukkueet() {
         this.asetaJoukkue(vierasJoukkue, 0);
@@ -66,7 +75,7 @@ public class Areena {
     }
 
     /**
-     * Alustaa kaksiulotteisen Ruutu-taulukon Ruutu-oliot
+     * Alustaa kaksiulotteisen Ruutu-taulukon Ruutu-oliot.
      */
     private void asetaRuudut() {
         for (int y = 0; y < areena.length; y++) {
@@ -78,7 +87,7 @@ public class Areena {
 
     /**
      *
-     * @return Kaksiulotteisen taulukon, jossa Ruutu-olioita
+     * @return Kaksiulotteisen taulukon, jossa Ruutu-olioita.
      */
     public Ruutu[][] getAreena() {
         return areena;
@@ -86,7 +95,7 @@ public class Areena {
 
     /**
      *
-     * @return Kotijoukkueen Joukkue-olion
+     * @return Kotijoukkueen Joukkue-olion.
      */
     public Joukkue getKotiJoukkue() {
         return kotiJoukkue;
@@ -94,7 +103,7 @@ public class Areena {
 
     /**
      *
-     * @return Vierasjoukkueen Vieras-olion
+     * @return Vierasjoukkueen Vieras-olion.
      */
     public Joukkue getVierasJoukkue() {
         return vierasJoukkue;

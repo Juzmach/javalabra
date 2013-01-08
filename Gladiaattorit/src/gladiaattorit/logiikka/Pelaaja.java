@@ -6,13 +6,19 @@ package gladiaattorit.logiikka;
  */
 public class Pelaaja {
 
+    /**
+     * Pelaajan nimi
+     */
     private String nimi;
+    /**
+     * Pelaajan joukkue
+     */
     private Joukkue joukkue;
 
     /**
      *
-     * @param nimi
-     * @param joukkueenNimi
+     * @param nimi Pelaajan nimi
+     * @param joukkueenNimi Pelaajan joukkueen nimi
      */
     public Pelaaja(String nimi, String joukkueenNimi) {
         this.nimi = nimi;
@@ -20,9 +26,12 @@ public class Pelaaja {
     }
 
     /**
+     * Liikuttaa gladiaattoria käyttäen gladiaattorin liiku(Ruutu)-metodia. Jos
+     * gladiaattorin edessä olevalla ruudulla on vastustajan gladiaattori,
+     * metodi käyttää gladiaattorin iske(Gladiaattori)-metodia.
      *
-     * @param liikutettava
-     * @param uusiRuutu
+     * @param liikutettava Liikutettava gladiaattori
+     * @param uusiRuutu Ruutu, jolle gladiaattoria liikutetaan
      */
     public void liikuta(Gladiaattori liikutettava, Ruutu uusiRuutu) {
         if (uusiRuutu.isKaytossa() && !joukkue.getGladiaattorit().contains(uusiRuutu.getGladiaattori())) {
@@ -33,6 +42,12 @@ public class Pelaaja {
         }
     }
 
+    /**
+     * Luo pelaajalle kahdeksanhenkisen joukkueen.
+     *
+     * @param nimi Joukkueen nimi
+     * @return Kahdeksanhenkinen joukkue
+     */
     private Joukkue luoJoukkue(String nimi) {
         Joukkue joukkue = new Joukkue(nimi);
         for (int i = 1; i <= 8; i++) {
@@ -43,7 +58,7 @@ public class Pelaaja {
 
     /**
      *
-     * @return
+     * @return Pelaajan joukkue
      */
     public Joukkue getJoukkue() {
         return joukkue;

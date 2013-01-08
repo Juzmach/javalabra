@@ -9,7 +9,13 @@ import java.util.List;
  */
 public class Joukkue {
 
+    /**
+     * Joukkueen nimi
+     */
     private String nimi;
+    /**
+     * Lista joukkueen gladiaattoreista
+     */
     private List<Gladiaattori> gladiaattorit;
 
     /**
@@ -23,7 +29,7 @@ public class Joukkue {
 
     /**
      *
-     * @return
+     * @return Joukkueen nimi
      */
     public String getNimi() {
         return nimi;
@@ -31,7 +37,7 @@ public class Joukkue {
 
     /**
      *
-     * @return
+     * @return Joukkueen koko
      */
     public int getJoukkueenKoko() {
         if (gladiaattorit.isEmpty()) {
@@ -41,7 +47,7 @@ public class Joukkue {
     }
 
     /**
-     *
+     * Lisää joukkueeseen yhden gladiaattorin, jos kyseistä gladiaattoria ei löydy vielä joukkueesta.
      * @param lisattava
      */
     public void lisaaGladiaattori(Gladiaattori lisattava) {
@@ -51,9 +57,9 @@ public class Joukkue {
     }
 
     /**
-     *
+     * Hakee gladiaattorin nimen mukaan
      * @param gladiaattorinNimi
-     * @return
+     * @return Gladiaattori, jolla parametrina annettu nimi
      */
     public Gladiaattori haeGladiaattori(String gladiaattorinNimi) {
         if (!gladiaattorit.isEmpty()) {
@@ -67,9 +73,9 @@ public class Joukkue {
     }
 
     /**
-     *
+     * Hakee gladiaattorin pelinumeron mukaan
      * @param peliNumero
-     * @return
+     * @return Gladiaattorin, jolla parametrina annettu pelinumero
      */
     public Gladiaattori haeGladiaattori(int peliNumero) {
         if (!gladiaattorit.isEmpty()) {
@@ -81,10 +87,21 @@ public class Joukkue {
         }
         return null;
     }
+    
+    public boolean onkoJoukkueKuollut(){
+        boolean joukkueElossa = true;
+        for (Gladiaattori gladiaattori : gladiaattorit) {
+            if(gladiaattori.isElossa()){
+                joukkueElossa = false;
+                break;
+            }
+        }
+        return joukkueElossa;
+    }
 
     /**
      *
-     * @return
+     * @return Lista gladiaattoreista
      */
     public List<Gladiaattori> getGladiaattorit() {
         return gladiaattorit;

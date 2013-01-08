@@ -26,10 +26,14 @@ public class Gladiaattori {
      * Ruutu, missä gladiaattori on
      */
     private Ruutu ruutu;
+    /**
+     * Gladiaattorin pelinumero
+     */
     private int peliNumero;
 
     /**
-     * 
+     * Gladiaattorin voima ja energia arvotaan satunnaisesti.
+     * Voima väliltä 3-8 ja Energia väliltä 15-35.
      * @param nimi Gladiaattorin nimi
      * @param peliNumero Gladiaattorin pelinumero
      */
@@ -43,8 +47,8 @@ public class Gladiaattori {
     }
 
     /**
-     *
-     * @param ruutu
+     * Asettaa Ruutu-olion, jossa gladiaattori on
+     * @param ruutu Asetettava ruutu
      */
     public void asetaRuutu(Ruutu ruutu) {
         this.ruutu = ruutu;
@@ -52,7 +56,7 @@ public class Gladiaattori {
 
     /**
      *
-     * @return
+     * @return Gladiaattorin nimi
      */
     public String getNimi() {
         return nimi;
@@ -60,7 +64,7 @@ public class Gladiaattori {
 
     /**
      *
-     * @return
+     * @return boolean-arvo, joka kertoo onko gladiaattori elossa
      */
     public boolean isElossa() {
         return elossa;
@@ -68,15 +72,15 @@ public class Gladiaattori {
 
     /**
      *
-     * @return
+     * @return Gladiaattorin energia
      */
     public int getEnergia() {
         return energia;
     }
 
     /**
-     *
-     * @param energia
+     * Asettaa gladiaattorin energian
+     * @param energia Asetettava energiamäärä
      */
     public void setEnergia(int energia) {
         this.energia = energia;
@@ -84,7 +88,7 @@ public class Gladiaattori {
 
     /**
      *
-     * @return
+     * @return Ruutu-olio, jossa gladiaattori on
      */
     public Ruutu getRuutu() {
         return ruutu;
@@ -97,7 +101,7 @@ public class Gladiaattori {
 
     /**
      *
-     * @return
+     * @return Gladiaattorin pelinumero
      */
     public int getPeliNumero() {
         return peliNumero;

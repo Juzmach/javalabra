@@ -6,15 +6,27 @@ package gladiaattorit.logiikka;
  */
 public class Ruutu {
 
+    /**
+     * Gladiaattori, joka on ruudussa
+     */
     private Gladiaattori gladiaattori;
+    /**
+     * boolean-arvo, joka kertoo onko ruutu käytössä vai ei
+     */
     private boolean kaytossa;
+    /**
+     * Ruudun X-koordinaatti areenalla
+     */
     private int ruudunX;
+    /**
+     * Ruudun Y-koordinaatti areenalla
+     */
     private int ruudunY;
 
     /**
      *
-     * @param y
-     * @param x
+     * @param y Ruudun Y-koordinaatti
+     * @param x Ruudun X-koordinaatti
      */
     public Ruutu(int y, int x) {
         this.gladiaattori = null;
@@ -25,7 +37,7 @@ public class Ruutu {
 
     /**
      *
-     * @return
+     * @return Ruudun Y-koordinaatti
      */
     public int getRuudunY() {
         return ruudunY;
@@ -33,15 +45,15 @@ public class Ruutu {
 
     /**
      *
-     * @return
+     * @return Ruudun X-koordinaatti
      */
     public int getRuudunX() {
         return ruudunX;
     }
 
     /**
-     *
-     * @param asetettava
+     * Asettaa gladiaattorin ruudulle, jos ruutu ei ole käytössä
+     * @param asetettava Asetettava gladiaattori
      */
     public void asetaGladiaattori(Gladiaattori asetettava) {
         if (this.kaytossa == false) {
@@ -53,7 +65,7 @@ public class Ruutu {
 
     /**
      *
-     * @return
+     * @return Ruudulla oleva gladiaattori
      */
     public Gladiaattori getGladiaattori() {
         return gladiaattori;
@@ -61,7 +73,7 @@ public class Ruutu {
 
     /**
      *
-     * @return
+     * @return boolean-arvo, joka kertoo onko ruutu käytössä
      */
     public boolean isKaytossa() {
         return kaytossa;
@@ -69,9 +81,20 @@ public class Ruutu {
 
     /**
      *
-     * @param kaytossa
+     * @param kaytossa Asettaa ruudun käytössäolevaksi tai päinvastoin
      */
     public void setKaytossa(boolean kaytossa) {
         this.kaytossa = kaytossa;
     }
+
+    @Override
+    public String toString() {
+        if(this.kaytossa){
+            return "" + this.gladiaattori.getPeliNumero();
+        } else {
+            return " ";
+        }
+    }
+    
+    
 }
