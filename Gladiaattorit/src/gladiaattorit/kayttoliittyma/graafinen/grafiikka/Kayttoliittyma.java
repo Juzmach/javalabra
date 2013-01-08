@@ -22,6 +22,8 @@ public class Kayttoliittyma implements Runnable {
     
     private JFrame frame;
     private Taistelupeli taistelupeli;
+    private AreenaPaneeli areenapaneeli;
+    private KomentoPaneeli komentopaneeli;
     
     public Kayttoliittyma() {
         this.taistelupeli = new Taistelupeli("Koti", "Kotijoukkue", "Vieras", "Vierasjoukkue");
@@ -43,8 +45,14 @@ public class Kayttoliittyma implements Runnable {
     private void luoKomponentit(Container container) {
         container.setBackground(Color.WHITE);
         container.setLayout(new BorderLayout());
-        container.add(new AreenaPaneeli(taistelupeli));
-        container.add(new KomentoPaneeli(taistelupeli), BorderLayout.SOUTH);
+        luoPaneelit();
+        container.add(areenapaneeli);
+        container.add(komentopaneeli, BorderLayout.SOUTH);
+    }
+    
+    private void luoPaneelit(){
+        areenapaneeli = new AreenaPaneeli(taistelupeli);
+        komentopaneeli = new KomentoPaneeli(taistelupeli,areenapaneeli);
     }
     
     public JFrame getFrame() {

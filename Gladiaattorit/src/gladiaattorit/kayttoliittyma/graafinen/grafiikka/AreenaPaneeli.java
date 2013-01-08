@@ -19,7 +19,7 @@ import javax.swing.JPanel;
  */
 
 
-public class AreenaPaneeli extends JPanel {
+public class AreenaPaneeli extends JPanel implements Paivitettava{
     
     private Ruutu[][] areena;
 
@@ -29,6 +29,7 @@ public class AreenaPaneeli extends JPanel {
         super.setSize(new Dimension(400,400));
     }
     
+    @Override
     public void paivita(){
         repaint();
     }
@@ -37,6 +38,7 @@ public class AreenaPaneeli extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         this.piirraAreenanRajat(g);
+        this.piirraGladiaattorit(g);
 
     }
 
@@ -45,6 +47,16 @@ public class AreenaPaneeli extends JPanel {
         for (int y = 0; y < areena.length; y++) {
             for (int x = 0; x < areena[y].length; x++) {
                 g.drawRect(x * 50, y * 50, 50, 50);
+            }
+        }
+    }
+    private void piirraGladiaattorit(Graphics g){
+        g.setColor(Color.BLACK);
+        for (int y = 0; y < areena.length; y++) {
+            for (int x = 0; x < areena[y].length; x++) {
+                if(areena[y][x].isKaytossa()){
+                    g.fillRect(50*x, 50*y, 10, 10);
+                }
             }
         }
     }
