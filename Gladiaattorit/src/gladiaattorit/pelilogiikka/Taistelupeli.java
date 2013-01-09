@@ -1,4 +1,4 @@
-package gladiaattorit.logiikka;
+package gladiaattorit.pelilogiikka;
 
 /**
  *
@@ -63,6 +63,12 @@ public class Taistelupeli {
         this.liikuta(liikutettava,uudenRuudunY,uudenRuudunX);
     }
     
+    /**
+     * Liikuttaa gladiaattoria käyttäen Pelaaja-luokan liikuta(Gladiaattori liikutettava, int y, int x)-metodia
+     * @param liikutettava Liikutettava gladiaattori
+     * @param y Uuden ruudun y-koordinaatti
+     * @param x Uuden ruudun x-koordinaatti
+     */
     public void liikuta(Gladiaattori liikutettava, int y, int x){
         if(!this.onkoPeliPaattynyt()){
         
@@ -133,6 +139,10 @@ public class Taistelupeli {
         }
     }
     
+    /**
+     *
+     * @return Voittajajoukkueen Joukkue-olio
+     */
     public Joukkue getVoittajaJoukkue(){
         if(this.onkoPeliPaattynyt()){
             return this.getVuorossaOlevaJoukkue();
@@ -141,6 +151,10 @@ public class Taistelupeli {
         }
     }
             
+    /**
+     *
+     * @return boolean-arvo, joka kertoo onko peli päättynyt
+     */
     public boolean onkoPeliPaattynyt(){
         if(koti.getJoukkue().onkoJoukkueKuollut() || vieras.getJoukkue().onkoJoukkueKuollut()){
             return true;

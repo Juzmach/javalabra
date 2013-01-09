@@ -1,4 +1,4 @@
-package gladiaattorit.logiikka;
+package gladiaattorit.pelilogiikka;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +64,7 @@ public class Joukkue {
     public Gladiaattori haeGladiaattori(String gladiaattorinNimi) {
         if (!gladiaattorit.isEmpty()) {
             for (Gladiaattori gladiaattori : this.gladiaattorit) {
-                if (gladiaattori.getNimi().equals(gladiaattorinNimi)) {
+                if (gladiaattori.getNimi().equals(gladiaattorinNimi.toUpperCase())) {
                     return gladiaattori;
                 }
             }
@@ -88,6 +88,10 @@ public class Joukkue {
         return null;
     }
     
+    /**
+     *
+     * @return boolean-arvo, joka kertoo onko koko joukkue kuollut
+     */
     public boolean onkoJoukkueKuollut(){
         boolean joukkueElossa = true;
         for (Gladiaattori gladiaattori : gladiaattorit) {

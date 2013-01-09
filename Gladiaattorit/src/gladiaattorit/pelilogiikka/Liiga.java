@@ -1,4 +1,4 @@
-package gladiaattorit.logiikka;
+package gladiaattorit.pelilogiikka;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,10 +1,10 @@
-package logiikkatest;
+package pelilogiikkatest;
 
 
-import gladiaattorit.logiikka.Areena;
-import gladiaattorit.logiikka.Gladiaattori;
-import gladiaattorit.logiikka.Joukkue;
-import gladiaattorit.logiikka.Ruutu;
+import gladiaattorit.pelilogiikka.Areena;
+import gladiaattorit.pelilogiikka.Gladiaattori;
+import gladiaattorit.pelilogiikka.Joukkue;
+import gladiaattorit.pelilogiikka.Ruutu;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

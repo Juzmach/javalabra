@@ -1,15 +1,15 @@
 package gladiaattorit.kayttoliittyma.tekstikayttoliittyma;
 
-import gladiaattorit.logiikka.Areena;
-import gladiaattorit.logiikka.Gladiaattori;
-import gladiaattorit.logiikka.Joukkue;
-import gladiaattorit.logiikka.Pelaaja;
-import gladiaattorit.logiikka.Suunta;
-import gladiaattorit.logiikka.Taistelupeli;
+import gladiaattorit.pelilogiikka.Areena;
+import gladiaattorit.pelilogiikka.Gladiaattori;
+import gladiaattorit.pelilogiikka.Joukkue;
+import gladiaattorit.pelilogiikka.Pelaaja;
+import gladiaattorit.pelilogiikka.Suunta;
+import gladiaattorit.pelilogiikka.Taistelupeli;
 import java.util.Scanner;
 
 /**
- *
+ * @deprecated 
  * @author juzmach
  */
 public class Tekstikayttoliittyma {
@@ -18,7 +18,7 @@ public class Tekstikayttoliittyma {
     private Scanner lukija;
 
     /**
-     *
+     * 
      * @param lukija
      */
     public Tekstikayttoliittyma(Scanner lukija) {

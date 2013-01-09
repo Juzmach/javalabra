@@ -9,5 +9,8 @@ package gladiaattorit.kayttoliittyma.graafinen.grafiikka;
  * @author juusostr
  */
 public interface Paivitettava {
+    /**
+     * Päivittää rajapintaa käyttävän olion graafisen esityksen.
+     */
     void paivita();
 }

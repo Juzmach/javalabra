@@ -1,14 +1,14 @@
-package logiikkatest;
+package pelilogiikkatest;
 
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 
-import gladiaattorit.logiikka.Areena;
-import gladiaattorit.logiikka.Gladiaattori;
-import gladiaattorit.logiikka.Pelaaja;
-import gladiaattorit.logiikka.Ruutu;
+import gladiaattorit.pelilogiikka.Areena;
+import gladiaattorit.pelilogiikka.Gladiaattori;
+import gladiaattorit.pelilogiikka.Pelaaja;
+import gladiaattorit.pelilogiikka.Ruutu;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

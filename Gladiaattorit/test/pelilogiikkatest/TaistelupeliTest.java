@@ -1,13 +1,13 @@
-package logiikkatest;
+package pelilogiikkatest;
 
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-import gladiaattorit.logiikka.Gladiaattori;
-import gladiaattorit.logiikka.Ruutu;
-import gladiaattorit.logiikka.Suunta;
-import gladiaattorit.logiikka.Taistelupeli;
+import gladiaattorit.pelilogiikka.Gladiaattori;
+import gladiaattorit.pelilogiikka.Ruutu;
+import gladiaattorit.pelilogiikka.Suunta;
+import gladiaattorit.pelilogiikka.Taistelupeli;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -83,6 +83,9 @@ public class TaistelupeliTest {
         assertEquals("Vieras", taistelu.getKenenVuoro());
     }
     
+    /**
+     *
+     */
     @Test
     public void onkoPeliPaattynytPalauttaaTrueKunKotijoukkueKuollut(){
         for (Gladiaattori gladiaattori : taistelu.getKoti().getJoukkue().getGladiaattorit()) {
@@ -91,6 +94,9 @@ public class TaistelupeliTest {
         assertTrue("onkoPeliPaattynyt() pitäisi palauttaa true!",taistelu.onkoPeliPaattynyt());
     }
 
+    /**
+     *
+     */
     @Test
     public void getVoittajaJoukkuePalauttaaOikeanJoukkueenKunKotiVoittaa() {
         for (Gladiaattori gladiaattori : taistelu.getVieras().getJoukkue().getGladiaattorit()) {

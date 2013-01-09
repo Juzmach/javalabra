@@ -1,4 +1,4 @@
-package gladiaattorit.logiikka;
+package gladiaattorit.pelilogiikka;
 
 /**
  *
@@ -44,14 +44,14 @@ public class Pelaaja {
 
     /**
      * Luo pelaajalle kahdeksanhenkisen joukkueen.
-     *
+     * 
      * @param nimi Joukkueen nimi
      * @return Kahdeksanhenkinen joukkue
      */
     private Joukkue luoJoukkue(String nimi) {
         Joukkue joukkue = new Joukkue(nimi);
         for (int i = 1; i <= 8; i++) {
-            joukkue.lisaaGladiaattori(new Gladiaattori("Taistelija", i));
+            joukkue.lisaaGladiaattori(new Gladiaattori("Taistelija" + i, i));
         }
         return joukkue;
     }

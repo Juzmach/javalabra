@@ -1,4 +1,4 @@
-package gladiaattorit.logiikka;
+package gladiaattorit.pelilogiikka;
 
 /**
  *

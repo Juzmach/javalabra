@@ -1,11 +1,11 @@
-package gladiaattorit.logiikka;
+package gladiaattorit.pelilogiikka;
 
 /**
  *
  * @author juzmach
  */
 public class Gladiaattori {
-    
+
     /**
      * Gladiaattorin nimi
      */
@@ -32,13 +32,14 @@ public class Gladiaattori {
     private int peliNumero;
 
     /**
-     * Gladiaattorin voima ja energia arvotaan satunnaisesti.
-     * Voima väliltä 3-8 ja Energia väliltä 15-35.
+     * Gladiaattorin voima ja energia arvotaan satunnaisesti. Voima väliltä 3-8
+     * ja Energia väliltä 15-35.
+     *
      * @param nimi Gladiaattorin nimi
      * @param peliNumero Gladiaattorin pelinumero
      */
     public Gladiaattori(String nimi, int peliNumero) {
-        this.nimi = nimi;
+        this.nimi = nimi.toUpperCase();
         this.voima = 3 + (int) (Math.random() * 6);
         this.energia = 15 + (int) (Math.random() * 21);
         this.elossa = true;
@@ -48,6 +49,7 @@ public class Gladiaattori {
 
     /**
      * Asettaa Ruutu-olion, jossa gladiaattori on
+     *
      * @param ruutu Asetettava ruutu
      */
     public void asetaRuutu(Ruutu ruutu) {
@@ -80,6 +82,7 @@ public class Gladiaattori {
 
     /**
      * Asettaa gladiaattorin energian
+     *
      * @param energia Asetettava energiamäärä
      */
     public void setEnergia(int energia) {
@@ -108,7 +111,9 @@ public class Gladiaattori {
     }
 
     /**
-     * Vähentää gladiaattorin energiaa toisen gladiaattorin aiheuttaman vahingon verran.
+     * Vähentää gladiaattorin energiaa toisen gladiaattorin aiheuttaman vahingon
+     * verran.
+     *
      * @param maara "Damage" eli toisen gladiaattorin aiheuttama vahinko
      */
     public void vahennaEnergiaa(int maara) {
@@ -125,6 +130,7 @@ public class Gladiaattori {
 
     /**
      * Siirtää gladiaattorin seuraavalle ruudulle
+     *
      * @param uusiRuutu Gladiaattorin uusi ruutu
      */
     public void liiku(Ruutu uusiRuutu) {
@@ -137,6 +143,7 @@ public class Gladiaattori {
 
     /**
      * Aiheuttaa parametrin gladiaattorille satunnaisen määrän vahinkoa
+     *
      * @param vastustaja Gladiaattori, jota lyödään
      */
     public void iske(Gladiaattori vastustaja) {
