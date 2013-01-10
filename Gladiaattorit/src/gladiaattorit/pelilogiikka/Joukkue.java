@@ -115,6 +115,10 @@ public class Joukkue {
         return gladiaattorit;
     }
 
+    /**
+     * Palauttaa Joukkueen String-tulosteen hakemalla jokaisen gladiaattorin String-tulosteen.
+     * @return Joukkueen String-tuloste
+     */
     @Override
     public String toString() {
         String tuloste = this.nimi + "\n";

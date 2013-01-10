@@ -39,6 +39,10 @@ public class InfoPaneeli extends JPanel implements Paivitettava {
         paivita();
     }
 
+    /**
+     * Luo tekstin ja voittajajoukkueen nimen, jotka tulostuvat infopaneeliin, kun peli päättyy.
+     * @return 
+     */
     private String luoVoittoTeksti() {
         if(taistelupeli.isKotijoukkueLuotu() && taistelupeli.isVierasjoukkueLuotu() && taistelupeli.onkoPeliPaattynyt()){
             return "\nPeli päättynyt!\nVoittaja: " + taistelupeli.getVoittajaJoukkue().getNimi();
