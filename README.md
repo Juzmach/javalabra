@@ -1,4 +1,4 @@
 ﻿Javalabra
 =========
 
-Gladiaattorimanageripeli - Joululabra 2012
+Gladiaattoripeli - Joululabra 2012
