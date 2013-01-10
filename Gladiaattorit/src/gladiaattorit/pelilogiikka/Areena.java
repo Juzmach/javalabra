@@ -37,7 +37,7 @@ public class Areena {
     }
 
     /**
-     *
+     * "Default"-konstruktori.
      */
     public Areena() {
        this.areena = new Ruutu[8][8];
@@ -49,8 +49,8 @@ public class Areena {
     /**
      * Asettaa molemmat joukkueet areenalle käyttäen asetaJoukkue(Joukkue, int)
      * metodia.
-     * @param kotiJoukkue 
-     * @param vierasJoukkue 
+     * @param kotiJoukkue Asetettava kotijoukkue
+     * @param vierasJoukkue Asetettava vierasjoukkue
      */
     public void asetaJoukkueet(Joukkue kotiJoukkue,Joukkue vierasJoukkue) {
         this.kotiJoukkue = kotiJoukkue;

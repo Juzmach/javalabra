@@ -39,7 +39,7 @@ public class KomentoPaneeliLogiikka {
 
     /**
      *
-     * @param taistelupeli
+     * @param taistelupeli Taistelupeli-olio
      */
     public KomentoPaneeliLogiikka(Taistelupeli taistelupeli) {
         this.taistelupeli = taistelupeli;
@@ -76,10 +76,20 @@ public class KomentoPaneeliLogiikka {
         return komentopaneelinTuloste;
     }
 
+    /**
+     * Palauttaa "LUO"-komennon tulosteen.
+     * @param komentoOsina Annettu komento pilkottuna
+     * @return "LUO"-komennon tuloste
+     */
     private String luoKomennonTuloste(String[] komentoOsina) {
         return "\nLuodaan pelaaja: " + komentoOsina[1];
     }
 
+    /**
+     * Palauttaa "APUA"-komennon tulosteen.
+     * @param komentoOsina Annettu komento pilkottuna
+     * @return "APUA"-komennon tuloste
+     */
     private String apuaKomennonTuloste(String[] komentoOsina) {
         String tuloste = "\nKOMENNOT:";
         if (!taistelupeli.isPeliAlkanut()) {
@@ -93,6 +103,10 @@ public class KomentoPaneeliLogiikka {
         return tuloste;
     }
 
+    /**
+     * Palauttaa "SUUNNAT"-komennon tulosteen.
+     * @return Annettu komento pilkottuna
+     */
     private String suunnatKomennonTuloste() {
         String tuloste = "\nSUUNNAT: ";
         for (String suunta : mahdollisetSuunnat) {
@@ -101,6 +115,11 @@ public class KomentoPaneeliLogiikka {
         return tuloste;
     }
 
+    /**
+     * Palauttaa "LIIKU"-komennon tulosteen.
+     * @param komentoOsina Annettu komento pilkottuna
+     * @return "LIIKU"-komennon tuloste
+     */
     private String liikuKomennonTuloste(String[] komentoOsina) {
         String tuloste = "\nLiikutetaan: " + komentoOsina[1] + " " + komentoOsina[2];
         if (taistelupeli.onkoPeliPaattynyt()) {
@@ -109,6 +128,11 @@ public class KomentoPaneeliLogiikka {
         return tuloste;
     }
 
+    /**
+     * Palauttaa "ALOITA"-komennon tulosteen.
+     * @param komentoOsina Annettu komento osina
+     * @return "ALOITA"-komennon tuloste
+     */
     private String aloitaKomennonTuloste(String[] komentoOsina) {
         if (!taistelupeli.isKotijoukkueLuotu()) {
             return "\nEt voi aloittaa peliä, koska kotijoukkuetta ei ole luotu!";
@@ -151,8 +175,8 @@ public class KomentoPaneeliLogiikka {
     }
 
     /**
-     * Tarkastaa onko komento toimiva.
-     *
+     * Luo pelaajat komennon parametrien mukaan.
+     * komentoOsina[1] = Koti/Vieras, komentoOsina[2] = Pelaajan nimi komentoOsina[3] = Joukkueen nimi komentoOsina[4] = Joukkueen koko
      * @param komentoOsina Komento pilkottuna osiin
      */
     public void luoPelaaja(String[] komentoOsina) {
@@ -163,6 +187,11 @@ public class KomentoPaneeliLogiikka {
         }
     }
 
+    /**
+     * Tarkistaa onko annettu Luo-komento toimiva.
+     * @param komentoOsina Annettu komento pilkottuna
+     * @return true jos on, false jos ei
+     */
     private boolean onkoLuoKomentoToimiva(String[] komentoOsina) {
         if (komentoOsina.length == 5 && (komentoOsina[1].equalsIgnoreCase("koti") || komentoOsina[1].equalsIgnoreCase("vieras"))
                 && Integer.parseInt(komentoOsina[4]) >= 1 && Integer.parseInt(komentoOsina[4]) <= 8) {
@@ -172,6 +201,11 @@ public class KomentoPaneeliLogiikka {
         }
     }
 
+    /**
+     * Tarkistaa onko annettu Suunnat-komento toimiva.
+     * @param komentoOsina Annettu komento pilkottuna
+     * @return true jos on, false jos ei
+     */
     private boolean onkoSuunnatKomentoToimiva(String[] komentoOsina) {
         if (komentoOsina.length == 1) {
             return true;
@@ -180,6 +214,11 @@ public class KomentoPaneeliLogiikka {
         }
     }
 
+    /**
+     * Tarkistaa onko annettu Liiku-komento toimiva.
+     * @param komentoOsina Annettu komento pilkottuna
+     * @return true jos on, false jos ei
+     */
     private boolean onkoLiikuKomentoToimiva(String[] komentoOsina) {
         if (komentoOsina.length == 3
                 && mahdollisetKomennot.contains(komentoOsina[0])
