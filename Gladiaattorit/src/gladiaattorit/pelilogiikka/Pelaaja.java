@@ -19,6 +19,7 @@ public class Pelaaja {
      *
      * @param nimi Pelaajan nimi
      * @param joukkueenNimi Pelaajan joukkueen nimi
+     * @param joukkueenKoko Joukkueen koko (1-8)
      */
     public Pelaaja(String nimi, String joukkueenNimi,int joukkueenKoko) {
         this.nimi = nimi;
@@ -48,6 +49,7 @@ public class Pelaaja {
      * Luo pelaajalle kahdeksanhenkisen joukkueen.
      *
      * @param nimi Joukkueen nimi
+     * @param joukkueenKoko Joukkueen koko (1-8)
      * @return Kahdeksanhenkinen joukkue
      */
     public Joukkue luoJoukkue(String nimi,int joukkueenKoko) {

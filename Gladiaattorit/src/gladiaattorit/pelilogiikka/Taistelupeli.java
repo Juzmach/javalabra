@@ -26,16 +26,23 @@ public class Taistelupeli {
      * Kumman vuoro kyseessä. Joko "Koti" tai "Vieras"
      */
     private String kenenVuoro;
+    /**
+     * False, jos peli ei ole vielä alkanut, true jos on.
+     */
     private boolean peliAlkanut;
+    /**
+     * False, jos kotijoukkuetta ei ole vielä luotu, true jos on.
+     */
     private boolean kotijoukkueLuotu;
+    /**
+     * False, jos vierasjoukkuetta ei ole vielä luotu, true jos on.
+     */
     private boolean vierasjoukkueLuotu;
 
     /**
      *
-     * @param kotiNimi "Koti"-pelaajan nimi
-     * @param kotiJoukkueenNimi kotijoukkueen nimi
-     * @param vierasNimi "Vieras"-pelaajan nimi
-     * @param vierasJoukkueenNimi vierasjoukkueen nimi
+     * @param koti "Koti"-pelaaja.
+     * @param vieras "Vieras"-pelaaja.
      */
     public Taistelupeli(Pelaaja koti, Pelaaja vieras) {
         this();
@@ -43,6 +50,9 @@ public class Taistelupeli {
         this.vieras = vieras;
     }
 
+    /**
+     * Uusi "Default"-konstruktori. 
+     */
     public Taistelupeli() {
         this.areena = new Areena();
         this.vuoroNumero = 0;
@@ -52,28 +62,52 @@ public class Taistelupeli {
         this.vierasjoukkueLuotu = false;
     }
 
+    /**
+     * 
+     * @param koti 
+     */
     public void setKoti(Pelaaja koti) {
         this.koti = koti;
         this.kotijoukkueLuotu = true;
     }
 
+    /**
+     *
+     * @param vieras 
+     */
     public void setVieras(Pelaaja vieras) {
         this.vieras = vieras;
         this.vierasjoukkueLuotu = true;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isPeliAlkanut() {
         return peliAlkanut;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isKotijoukkueLuotu() {
         return kotijoukkueLuotu;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isVierasjoukkueLuotu() {
         return vierasjoukkueLuotu;
     }
 
+    /**
+     *
+     * @param peliAlkanut
+     */
     public void setPeliAlkanut(boolean peliAlkanut) {
         if (kotijoukkueLuotu && vierasjoukkueLuotu) {
             this.peliAlkanut = peliAlkanut;
@@ -105,7 +139,7 @@ public class Taistelupeli {
 
     /**
      * Liikuttaa gladiaattoria käyttäen Pelaaja-luokan liikuta(Gladiaattori
-     * liikutettava, int y, int x)-metodia
+     * liikutettava, int y, int x)-metodia vain jos peli on käynnissä.
      *
      * @param liikutettava Liikutettava gladiaattori
      * @param y Uuden ruudun y-koordinaatti
@@ -125,6 +159,9 @@ public class Taistelupeli {
         }
     }
 
+    /**
+     *
+     */
     public void asetaJoukkueetAreenalle() {
         areena.asetaJoukkueet(koti.getJoukkue(), vieras.getJoukkue());
     }

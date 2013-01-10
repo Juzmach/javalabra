@@ -36,6 +36,9 @@ public class Areena {
         
     }
 
+    /**
+     *
+     */
     public Areena() {
        this.areena = new Ruutu[8][8];
        this.asetaRuudut();
@@ -46,6 +49,8 @@ public class Areena {
     /**
      * Asettaa molemmat joukkueet areenalle käyttäen asetaJoukkue(Joukkue, int)
      * metodia.
+     * @param kotiJoukkue 
+     * @param vierasJoukkue 
      */
     public void asetaJoukkueet(Joukkue kotiJoukkue,Joukkue vierasJoukkue) {
         this.kotiJoukkue = kotiJoukkue;

@@ -120,8 +120,8 @@ public class KomentoPaneeliLogiikka {
     }
 
     /**
-     * Pilkkoo komennon osiin ja suorittaa komennon osien perusteella.
-     *
+     * Pilkkoo komennon osiin ja suorittaa komennon osien perusteella. Suorittaa VAIN Liiku-, Luo- ja Aloita-komennot.
+     * Tulostuskomennot suoriutuu haeKomennonTuloste()-metodilla.
      * @param komento Käyttäjän antama komento.
      */
     public void toimintaKomennonSuoritus(String komento) {
@@ -140,6 +140,9 @@ public class KomentoPaneeliLogiikka {
         }
     }
 
+    /**
+     * Aloittaa pelin.
+     */
     private void aloitaPeli() {
         if (taistelupeli.isKotijoukkueLuotu() && taistelupeli.isVierasjoukkueLuotu()) {
             taistelupeli.asetaJoukkueetAreenalle();
@@ -151,7 +154,6 @@ public class KomentoPaneeliLogiikka {
      * Tarkastaa onko komento toimiva.
      *
      * @param komentoOsina Komento pilkottuna osiin
-     * @return true, jos komento toimii, false jos ei
      */
     public void luoPelaaja(String[] komentoOsina) {
         if (komentoOsina[1].equalsIgnoreCase("koti")) {
@@ -211,7 +213,6 @@ public class KomentoPaneeliLogiikka {
                 mahdollisetGladiaattorit.add(gladiaattori.getNimi().toUpperCase());
             }
         }
-
     }
 
     /**
