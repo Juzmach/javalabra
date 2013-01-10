@@ -17,7 +17,7 @@ public class Joukkue {
      * Lista joukkueen gladiaattoreista
      */
     private List<Gladiaattori> gladiaattorit;
-
+    
     /**
      *
      * @param nimi
@@ -118,7 +118,6 @@ public class Joukkue {
     @Override
     public String toString() {
         String tuloste = this.nimi + "\n";
-        tuloste += "Nimi               # Attribuutit\n";
         for (Gladiaattori gladiaattori : gladiaattorit) {
             if (gladiaattori.isElossa()) {
                 tuloste += gladiaattori.toString() + "\n";

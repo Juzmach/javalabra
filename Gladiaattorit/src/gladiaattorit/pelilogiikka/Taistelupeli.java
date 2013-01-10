@@ -26,6 +26,9 @@ public class Taistelupeli {
      * Kumman vuoro kyseessä. Joko "Koti" tai "Vieras"
      */
     private String kenenVuoro;
+    private boolean peliAlkanut;
+    private boolean kotijoukkueLuotu;
+    private boolean vierasjoukkueLuotu;
 
     /**
      *
@@ -34,12 +37,47 @@ public class Taistelupeli {
      * @param vierasNimi "Vieras"-pelaajan nimi
      * @param vierasJoukkueenNimi vierasjoukkueen nimi
      */
-    public Taistelupeli(String kotiNimi, String kotiJoukkueenNimi, String vierasNimi, String vierasJoukkueenNimi) {
-        this.koti = new Pelaaja(kotiNimi, kotiJoukkueenNimi);
-        this.vieras = new Pelaaja(vierasNimi, vierasJoukkueenNimi);
-        this.areena = new Areena(koti.getJoukkue(), vieras.getJoukkue());
+    public Taistelupeli(Pelaaja koti, Pelaaja vieras) {
+        this();
+        this.koti = koti;
+        this.vieras = vieras;
+    }
+
+    public Taistelupeli() {
+        this.areena = new Areena();
         this.vuoroNumero = 0;
         this.kenenVuoro = "Koti";
+        this.peliAlkanut = false;
+        this.kotijoukkueLuotu = false;
+        this.vierasjoukkueLuotu = false;
+    }
+
+    public void setKoti(Pelaaja koti) {
+        this.koti = koti;
+        this.kotijoukkueLuotu = true;
+    }
+
+    public void setVieras(Pelaaja vieras) {
+        this.vieras = vieras;
+        this.vierasjoukkueLuotu = true;
+    }
+
+    public boolean isPeliAlkanut() {
+        return peliAlkanut;
+    }
+
+    public boolean isKotijoukkueLuotu() {
+        return kotijoukkueLuotu;
+    }
+
+    public boolean isVierasjoukkueLuotu() {
+        return vierasjoukkueLuotu;
+    }
+
+    public void setPeliAlkanut(boolean peliAlkanut) {
+        if (kotijoukkueLuotu && vierasjoukkueLuotu) {
+            this.peliAlkanut = peliAlkanut;
+        }
     }
 
     /**
@@ -85,6 +123,10 @@ public class Taistelupeli {
                 this.vaihdaVuoroa();
             }
         }
+    }
+
+    public void asetaJoukkueetAreenalle() {
+        areena.asetaJoukkueet(koti.getJoukkue(), vieras.getJoukkue());
     }
 
     /**

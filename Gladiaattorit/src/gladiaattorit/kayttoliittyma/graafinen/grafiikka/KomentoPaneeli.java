@@ -103,7 +103,7 @@ public class KomentoPaneeli extends JPanel implements Paivitettava {
      */
     private void luoKomentoruutu() {
 
-        komentoruutu = new JTextArea("Peli alkaa!\n" + "Vuorossa: " + taistelupeli.getKenenVuoro());
+        komentoruutu = new JTextArea("Tervetuloa gladiaattoripeliin! Muista luoda pelaajat ennen pelin aloittamista. Kirjoita \"APUA\" päästäksesi alkuun.");
         komentoruutu.setEditable(false);
         komentoruutu.setBackground(Color.WHITE);
         rullattavaKomentoruutu = new JScrollPane(komentoruutu, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -141,6 +141,10 @@ public class KomentoPaneeli extends JPanel implements Paivitettava {
      */
     @Override
     public void paivita() {
-        komentoruutu.append(komentologiikka.haeKomennonTuloste(komentorivi.getText()) + "\nVuorossa: " + taistelupeli.getKenenVuoro());
+        komentoruutu.append(komentologiikka.haeKomennonTuloste(komentorivi.getText()));
+        if(taistelupeli.isPeliAlkanut()){
+            komentoruutu.append("\nVuorossa: " + taistelupeli.getKenenVuoro());
+        }
+        komentorivi.setText("");
     }
 }

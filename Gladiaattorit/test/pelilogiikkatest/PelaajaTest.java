@@ -51,8 +51,8 @@ public class PelaajaTest {
      */
     @Before
     public void setUp() {
-        koti = new Pelaaja("Pelaaja", "pelaajanJoukkue");
-        vieras = new Pelaaja("Vastustaja", "vastustajanJoukkue");
+        koti = new Pelaaja("Pelaaja", "pelaajanJoukkue",8);
+        vieras = new Pelaaja("Vastustaja", "vastustajanJoukkue",8);
         areena = new Areena(koti.getJoukkue(), vieras.getJoukkue());
     }
 

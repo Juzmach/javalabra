@@ -39,16 +39,24 @@ public class InfoPaneeli extends JPanel implements Paivitettava {
         paivita();
     }
 
-    private String luoKomentolistaanTulevaTeksti() {
-        return "KOMENNOT\nLIIKU GLADIAATTORIN_NIMI SUUNTA\nSUUNNAT\n";
+    private String luoVoittoTeksti() {
+        if(taistelupeli.isKotijoukkueLuotu() && taistelupeli.isVierasjoukkueLuotu() && taistelupeli.onkoPeliPaattynyt()){
+            return "\nPeli päättynyt!\nVoittaja: " + taistelupeli.getVoittajaJoukkue().getNimi();
+        } else {
+            return "";
+        }
     }
 
     private String lisaaGladiaattorienNimetInfoPaneeliin() {
-        return "\n" + taistelupeli.getKoti() + "\n" + taistelupeli.getVieras();
+        if (taistelupeli.isPeliAlkanut()) {
+            return "\n" + taistelupeli.getKoti() + "\n" + taistelupeli.getVieras();
+        } else {
+            return "";
+        }
     }
 
     @Override
     public void paivita() {
-        this.komentoLista.setText(luoKomentolistaanTulevaTeksti() + lisaaGladiaattorienNimetInfoPaneeliin());
+        this.komentoLista.setText(lisaaGladiaattorienNimetInfoPaneeliin() + luoVoittoTeksti());
     }
 }

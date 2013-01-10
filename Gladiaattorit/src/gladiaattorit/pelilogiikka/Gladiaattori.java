@@ -99,7 +99,7 @@ public class Gladiaattori {
 
     @Override
     public String toString() {
-        return nimi + " " + peliNumero + " [" + "voima: " + voima + ", " + "energia: " + energia + "]";
+        return nimi + " [" + "voima: " + voima + " " + "energia: " + energia + "]";
     }
 
     /**

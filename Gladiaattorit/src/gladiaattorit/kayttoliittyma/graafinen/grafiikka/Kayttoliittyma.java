@@ -6,6 +6,7 @@ package gladiaattorit.kayttoliittyma.graafinen.grafiikka;
 
 import gladiaattorit.kayttoliittyma.graafinen.logiikka.KomentoPaneeliLogiikka;
 import gladiaattorit.kayttoliittyma.graafinen.logiikka.KomentoPaneelinKuuntelija;
+import gladiaattorit.pelilogiikka.Pelaaja;
 import gladiaattorit.pelilogiikka.Taistelupeli;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -45,11 +46,11 @@ public class Kayttoliittyma implements Runnable {
     private InfoPaneeli infopaneeli;
 
     /**
-     * Alustaa Kayttoliittyma-luokan Taistelupeli- ja KomentoPaneeliLogiikka-oliot.
+     * Alustaa Kayttoliittyma-luokan Taistelupeli- ja
+     * KomentoPaneeliLogiikka-oliot.
      */
     public Kayttoliittyma() {
-        this.taistelupeli = new Taistelupeli("Koti", "Kotijoukkue", "Vieras", "Vierasjoukkue");
-        this.komentologiikka = new KomentoPaneeliLogiikka(taistelupeli);
+        
     }
 
     /**
@@ -57,6 +58,8 @@ public class Kayttoliittyma implements Runnable {
      */
     @Override
     public void run() {
+        this.taistelupeli = new Taistelupeli();
+        this.komentologiikka = new KomentoPaneeliLogiikka(taistelupeli);
         frame = new JFrame("Gladiaattorit");
         Dimension size = new Dimension(650, 620);
         frame.setPreferredSize(size);
@@ -67,7 +70,7 @@ public class Kayttoliittyma implements Runnable {
         frame.pack();
         frame.setVisible(true);
     }
-
+    
     /**
      * Luo käyttöliittymän komponentit.
      *

@@ -5,6 +5,7 @@ package pelilogiikkatest;
  * and open the template in the editor.
  */
 import gladiaattorit.pelilogiikka.Gladiaattori;
+import gladiaattorit.pelilogiikka.Pelaaja;
 import gladiaattorit.pelilogiikka.Ruutu;
 import gladiaattorit.pelilogiikka.Suunta;
 import gladiaattorit.pelilogiikka.Taistelupeli;
@@ -48,7 +49,9 @@ public class TaistelupeliTest {
      */
     @Before
     public void setUp() {
-        taistelu = new Taistelupeli("koti", "kotijoukkue", "vieras", "vierasjoukkue");
+        taistelu = new Taistelupeli(new Pelaaja("koti","kotijoukkue",8),new Pelaaja("vieras","vierasjoukkue",8));
+        taistelu.asetaJoukkueetAreenalle();
+        
     }
 
     /**

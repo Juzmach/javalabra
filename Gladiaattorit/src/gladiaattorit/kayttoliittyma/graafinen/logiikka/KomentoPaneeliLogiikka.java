@@ -1,6 +1,7 @@
 package gladiaattorit.kayttoliittyma.graafinen.logiikka;
 
 import gladiaattorit.pelilogiikka.Gladiaattori;
+import gladiaattorit.pelilogiikka.Pelaaja;
 import gladiaattorit.pelilogiikka.Suunta;
 import gladiaattorit.pelilogiikka.Taistelupeli;
 import java.util.ArrayList;
@@ -58,15 +59,64 @@ public class KomentoPaneeliLogiikka {
     public String haeKomennonTuloste(String komento) {
         komentoOsina = komento.toUpperCase().split("\\s+");
         luoMahdolliset();
-        if (!onkoKomentoToimiva(komentoOsina)) {
-            komentopaneelinTuloste = "\nKomento ei ole toimiva! Yritä uudestaan.";
-            return komentopaneelinTuloste;
-        } else if (komentoOsina[0].equals("LIIKU")) {
-            komentopaneelinTuloste = "\nLiikutetaan: " + komentoOsina[1] + " " + komentoOsina[2];
-        } else if (komentoOsina[0].equals("SUUNNAT")) {
-            komentopaneelinTuloste = "\nSUUNNAT\nETEEN TAAKSE VASEN OIKEA ETUVASEN ETUOIKEA TAKAVASEN TAKAOIKEA";
+
+        if (onkoLiikuKomentoToimiva(komentoOsina) && komentoOsina[0].equals("LIIKU")) {
+            komentopaneelinTuloste = liikuKomennonTuloste(komentoOsina);
+        } else if (onkoSuunnatKomentoToimiva(komentoOsina) && komentoOsina[0].equals("SUUNNAT")) {
+            komentopaneelinTuloste = suunnatKomennonTuloste();
+        } else if (onkoLuoKomentoToimiva(komentoOsina) && komentoOsina[0].equals("LUO")) {
+            komentopaneelinTuloste = luoKomennonTuloste(komentoOsina);
+        } else if (komentoOsina[0].equals("ALOITA")) {
+            komentopaneelinTuloste = aloitaKomennonTuloste(komentoOsina);
+        } else if (komentoOsina[0].equals("APUA")) {
+            komentopaneelinTuloste = apuaKomennonTuloste(komentoOsina);
+        } else {
+            komentopaneelinTuloste = "\nVirheellinen komento! Yritä uudestaan!";
         }
         return komentopaneelinTuloste;
+    }
+
+    private String luoKomennonTuloste(String[] komentoOsina) {
+        return "\nLuodaan pelaaja: " + komentoOsina[1];
+    }
+
+    private String apuaKomennonTuloste(String[] komentoOsina) {
+        String tuloste = "\nKOMENNOT:";
+        if (!taistelupeli.isPeliAlkanut()) {
+            tuloste += "\nLUO <KOTI/VIERAS> <PELAAJAN NIMI> <JOUKKUEEN NIMI> <JOUKKUEEN KOKO>";
+            tuloste += "\nALOITA";
+        } else {
+            tuloste += "\nLIIKU <GLADIAATTORIN NIMI> <SUUNTA>";
+            tuloste += "\nSUUNNAT";
+        }
+        tuloste += "\nAPUA";
+        return tuloste;
+    }
+
+    private String suunnatKomennonTuloste() {
+        String tuloste = "\nSUUNNAT: ";
+        for (String suunta : mahdollisetSuunnat) {
+            tuloste += suunta + " ";
+        }
+        return tuloste;
+    }
+
+    private String liikuKomennonTuloste(String[] komentoOsina) {
+        String tuloste = "\nLiikutetaan: " + komentoOsina[1] + " " + komentoOsina[2];
+        if (taistelupeli.onkoPeliPaattynyt()) {
+            tuloste += "\nPeli on päättynyt! Voittaja: " + taistelupeli.getVoittajaJoukkue().getNimi();
+        }
+        return tuloste;
+    }
+
+    private String aloitaKomennonTuloste(String[] komentoOsina) {
+        if (!taistelupeli.isKotijoukkueLuotu()) {
+            return "\nEt voi aloittaa peliä, koska kotijoukkuetta ei ole luotu!";
+        } else if (!taistelupeli.isVierasjoukkueLuotu()) {
+            return "\nEt voi aloittaa peliä, koska vierasjoukkuetta ei ole luotu!";
+        } else {
+            return "\nAloitetaan peli!";
+        }
     }
 
     /**
@@ -74,13 +124,26 @@ public class KomentoPaneeliLogiikka {
      *
      * @param komento Käyttäjän antama komento.
      */
-    public void komennonSuoritus(String komento) {
+    public void toimintaKomennonSuoritus(String komento) {
         komentoOsina = komento.toUpperCase().split("\\s+");
-        luoMahdolliset();
-        if (onkoKomentoToimiva(komentoOsina) && komentoOsina[0].equals("LIIKU")) {
-            liikuKomento(komentoOsina);
-        } else if (komentoOsina[0].equals("SUUNNAT")) {
-            return;
+        if (taistelupeli.isPeliAlkanut()) {
+            luoMahdolliset();
+            if (komentoOsina[0].equals("LIIKU") && onkoLiikuKomentoToimiva(komentoOsina)) {
+                liikuKomento(komentoOsina);
+            }
+        } else {
+            if (komentoOsina[0].equals("LUO") && onkoLuoKomentoToimiva(komentoOsina)) {
+                luoPelaaja(komentoOsina);
+            } else if (komentoOsina[0].equals("ALOITA")) {
+                aloitaPeli();
+            }
+        }
+    }
+
+    private void aloitaPeli() {
+        if (taistelupeli.isKotijoukkueLuotu() && taistelupeli.isVierasjoukkueLuotu()) {
+            taistelupeli.asetaJoukkueetAreenalle();
+            taistelupeli.setPeliAlkanut(true);
         }
     }
 
@@ -90,10 +153,32 @@ public class KomentoPaneeliLogiikka {
      * @param komentoOsina Komento pilkottuna osiin
      * @return true, jos komento toimii, false jos ei
      */
-    public boolean onkoKomentoToimiva(String[] komentoOsina) {
-        if (komentoOsina[0].equals("SUUNNAT") && komentoOsina.length == 1) {
-            return true;
+    public void luoPelaaja(String[] komentoOsina) {
+        if (komentoOsina[1].equalsIgnoreCase("koti")) {
+            taistelupeli.setKoti(new Pelaaja(komentoOsina[2], komentoOsina[3], Integer.parseInt(komentoOsina[4])));
+        } else {
+            taistelupeli.setVieras(new Pelaaja(komentoOsina[2], komentoOsina[3], Integer.parseInt(komentoOsina[4])));
         }
+    }
+
+    private boolean onkoLuoKomentoToimiva(String[] komentoOsina) {
+        if (komentoOsina.length == 5 && (komentoOsina[1].equalsIgnoreCase("koti") || komentoOsina[1].equalsIgnoreCase("vieras"))
+                && Integer.parseInt(komentoOsina[4]) >= 1 && Integer.parseInt(komentoOsina[4]) <= 8) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean onkoSuunnatKomentoToimiva(String[] komentoOsina) {
+        if (komentoOsina.length == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean onkoLiikuKomentoToimiva(String[] komentoOsina) {
         if (komentoOsina.length == 3
                 && mahdollisetKomennot.contains(komentoOsina[0])
                 && mahdollisetGladiaattorit.contains(komentoOsina[1])
@@ -114,15 +199,19 @@ public class KomentoPaneeliLogiikka {
         luoMahdollisetKomennotLista();
         luoMahdollisetSuunnatLista();
         luoMahdollisetGladiaattoritLista();
+
     }
 
     /**
      * Apumetodi, joka luo listan gladiaattorien nimistä.
      */
     private void luoMahdollisetGladiaattoritLista() {
-        for (Gladiaattori gladiaattori : taistelupeli.getVuorossaOlevaJoukkue().getGladiaattorit()) {
-            mahdollisetGladiaattorit.add(gladiaattori.getNimi().toUpperCase());
+        if (taistelupeli.isKotijoukkueLuotu() && taistelupeli.isVierasjoukkueLuotu()) {
+            for (Gladiaattori gladiaattori : taistelupeli.getVuorossaOlevaJoukkue().getGladiaattorit()) {
+                mahdollisetGladiaattorit.add(gladiaattori.getNimi().toUpperCase());
+            }
         }
+
     }
 
     /**

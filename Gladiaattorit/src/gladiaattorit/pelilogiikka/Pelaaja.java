@@ -20,9 +20,9 @@ public class Pelaaja {
      * @param nimi Pelaajan nimi
      * @param joukkueenNimi Pelaajan joukkueen nimi
      */
-    public Pelaaja(String nimi, String joukkueenNimi) {
+    public Pelaaja(String nimi, String joukkueenNimi,int joukkueenKoko) {
         this.nimi = nimi;
-        this.joukkue = this.luoJoukkue(joukkueenNimi);
+        this.joukkue = this.luoJoukkue(joukkueenNimi,joukkueenKoko);
     }
 
     /**
@@ -36,7 +36,9 @@ public class Pelaaja {
     public void liikuta(Gladiaattori liikutettava, Ruutu uusiRuutu) {
         if (uusiRuutu.isKaytossa() && !joukkue.getGladiaattorit().contains(uusiRuutu.getGladiaattori())) {
             liikutettava.iske(uusiRuutu.getGladiaattori());
-            uusiRuutu.getGladiaattori().iske(liikutettava);
+            if(!uusiRuutu.getGladiaattori().isElossa()){
+                liikutettava.liiku(uusiRuutu);
+            }
         } else {
             liikutettava.liiku(uusiRuutu);
         }
@@ -48,10 +50,10 @@ public class Pelaaja {
      * @param nimi Joukkueen nimi
      * @return Kahdeksanhenkinen joukkue
      */
-    public Joukkue luoJoukkue(String nimi) {
+    public Joukkue luoJoukkue(String nimi,int joukkueenKoko) {
         Joukkue joukkue = new Joukkue(nimi);
-        for (int i = 1; i <= 8; i++) {
-            joukkue.lisaaGladiaattori(new Gladiaattori("Taistelija" + i, i));
+        for (int i = 1; i <= joukkueenKoko; i++) {
+            joukkue.lisaaGladiaattori(new Gladiaattori("Unit" + i, i));
         }
         return joukkue;
     }

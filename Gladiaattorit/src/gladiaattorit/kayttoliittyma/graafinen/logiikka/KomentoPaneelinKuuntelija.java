@@ -55,7 +55,7 @@ public class KomentoPaneelinKuuntelija implements ActionListener, KeyListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        komentologiikka.komennonSuoritus(komentopaneeli.getKomentorivi().getText());
+        komentologiikka.toimintaKomennonSuoritus(komentopaneeli.getKomentorivi().getText());
         paivitaPaneelit();
     }
 
@@ -75,7 +75,7 @@ public class KomentoPaneelinKuuntelija implements ActionListener, KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == e.VK_ENTER) {
-            komentologiikka.komennonSuoritus(komentopaneeli.getKomentorivi().getText());
+            komentologiikka.toimintaKomennonSuoritus(komentopaneeli.getKomentorivi().getText());
             paivitaPaneelit();
         }
     }
