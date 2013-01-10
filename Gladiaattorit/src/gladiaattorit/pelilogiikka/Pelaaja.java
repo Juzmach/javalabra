@@ -37,9 +37,6 @@ public class Pelaaja {
     public void liikuta(Gladiaattori liikutettava, Ruutu uusiRuutu) {
         if (uusiRuutu.isKaytossa() && !joukkue.getGladiaattorit().contains(uusiRuutu.getGladiaattori())) {
             liikutettava.iske(uusiRuutu.getGladiaattori());
-            if(!uusiRuutu.getGladiaattori().isElossa()){
-                liikutettava.liiku(uusiRuutu);
-            }
         } else {
             liikutettava.liiku(uusiRuutu);
         }

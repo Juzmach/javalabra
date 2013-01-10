@@ -85,6 +85,11 @@ public class AreenaPaneeli extends JPanel implements Paivitettava {
     private void piirraGladiaattori(Graphics g, int y, int x) {
         int ikoninY = 50 * y;
         int ikoninX = 50 * x;
+        piirraGladiaattorinIkoni(g,ikoninY,ikoninX);
+        g.drawString("" + areena[y][x].getGladiaattori().getPeliNumero(), ikoninX, ikoninY + 50);
+    }
+    
+    private void piirraGladiaattorinIkoni(Graphics g, int ikoninY, int ikoninX){
         g.setColor(Color.BLACK);
         g.fillRect(ikoninX + 20, ikoninY, 10, 10);
         for (int i = 1; i <= 3; i++) {
@@ -96,6 +101,5 @@ public class AreenaPaneeli extends JPanel implements Paivitettava {
         g.fillRect(ikoninX + 30, ikoninY + 30, 10, 10);
         g.fillRect(ikoninX + 10, ikoninY + 40, 10, 10);
         g.fillRect(ikoninX + 30, ikoninY + 40, 10, 10);
-        g.drawString("" + areena[y][x].getGladiaattori().getPeliNumero(), ikoninX, ikoninY + 50);
     }
 }

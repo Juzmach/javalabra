@@ -30,21 +30,25 @@ public class Gladiaattori {
      * Gladiaattorin pelinumero
      */
     private int peliNumero;
+    private int viimeisinTehtyDamage;
+    private boolean olikoIsku;
 
     /**
-     * Gladiaattorin voima ja energia arvotaan satunnaisesti. Voima väliltä 5-8
-     * ja Energia väliltä 25-35.
+     * Gladiaattorin voima ja energia arvotaan satunnaisesti. Voima väliltä 10-40
+     * ja Energia väliltä 75-100.
      *
      * @param nimi Gladiaattorin nimi
      * @param peliNumero Gladiaattorin pelinumero
      */
     public Gladiaattori(String nimi, int peliNumero) {
         this.nimi = nimi.toUpperCase();
-        this.voima = 5 + (int) (Math.random() * 4);
-        this.energia = 25 + (int) (Math.random() * 11);
+        this.voima = 10 + (int) (Math.random() * 26);
+        this.energia = 75 + (int) (Math.random() * 101);
         this.elossa = true;
         this.ruutu = null;
         this.peliNumero = peliNumero;
+        this.viimeisinTehtyDamage = 0;
+        this.olikoIsku = false;
     }
 
     /**
@@ -62,6 +66,10 @@ public class Gladiaattori {
      */
     public String getNimi() {
         return nimi;
+    }
+
+    public int getViimeisinTehtyDamage() {
+        return viimeisinTehtyDamage;
     }
 
     /**
@@ -138,6 +146,7 @@ public class Gladiaattori {
             ruutu.setKaytossa(false);
             uusiRuutu.asetaGladiaattori(this);
             this.ruutu = uusiRuutu;
+            this.olikoIsku = false;
         }
     }
 
@@ -147,7 +156,25 @@ public class Gladiaattori {
      * @param vastustaja Gladiaattori, jota lyödään
      */
     public void iske(Gladiaattori vastustaja) {
-        int damage = (int) (Math.random() * voima);
-        vastustaja.vahennaEnergiaa(damage);
+        if (osuuko()) {
+            int damage = 10+(int)(Math.random() * voima);
+            vastustaja.vahennaEnergiaa(damage);
+            this.viimeisinTehtyDamage = damage;
+
+        }
+        this.olikoIsku = true;
+    }
+
+    private boolean osuuko() {
+        double osumisprosentti = Math.random();
+        if (osumisprosentti >= 0.5) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean olikoIsku() {
+        return olikoIsku;
     }
 }

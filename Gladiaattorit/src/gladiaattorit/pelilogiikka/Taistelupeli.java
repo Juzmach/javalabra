@@ -38,6 +38,8 @@ public class Taistelupeli {
      * False, jos vierasjoukkuetta ei ole vielä luotu, true jos on.
      */
     private boolean vierasjoukkueLuotu;
+    
+    private String viimeisimmanIskunTuloste;
 
     /**
      *
@@ -60,6 +62,7 @@ public class Taistelupeli {
         this.peliAlkanut = false;
         this.kotijoukkueLuotu = false;
         this.vierasjoukkueLuotu = false;
+        this.viimeisimmanIskunTuloste = "";
     }
 
     /**
@@ -112,6 +115,10 @@ public class Taistelupeli {
         if (kotijoukkueLuotu && vierasjoukkueLuotu) {
             this.peliAlkanut = peliAlkanut;
         }
+    }
+
+    public String getViimeisimmanIskunTuloste() {
+        return viimeisimmanIskunTuloste;
     }
 
     /**

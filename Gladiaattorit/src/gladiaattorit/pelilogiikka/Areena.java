@@ -70,6 +70,11 @@ public class Areena {
     private void asetaJoukkue(Joukkue asetettavaJoukkue, int alkuY, int alkuX) {
         int y = alkuY;
         int x = alkuX;
+        
+        if(alkuY == 0 && asetettavaJoukkue.getJoukkueenKoko() < 4){
+            y = 1;
+        }
+        
         for (Gladiaattori asetettava : asetettavaJoukkue.getGladiaattorit()) {
             if (y <= areena.length - 1 && x <= areena[y].length) {
                 areena[y][x].asetaGladiaattori(asetettava);

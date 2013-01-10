@@ -62,6 +62,9 @@ public class KomentoPaneeliLogiikka {
 
         if (onkoLiikuKomentoToimiva(komentoOsina) && komentoOsina[0].equals("LIIKU")) {
             komentopaneelinTuloste = liikuKomennonTuloste(komentoOsina);
+            if (taistelupeli.getVuorossaOlevaJoukkue().haeGladiaattori(komentoOsina[1]).olikoIsku()) {
+                haeViimeisimmanIskunTuloste(taistelupeli.getVuorossaOlevaJoukkue().haeGladiaattori(komentoOsina[1]).getViimeisinTehtyDamage());
+            }
         } else if (onkoSuunnatKomentoToimiva(komentoOsina) && komentoOsina[0].equals("SUUNNAT")) {
             komentopaneelinTuloste = suunnatKomennonTuloste();
         } else if (onkoLuoKomentoToimiva(komentoOsina) && komentoOsina[0].equals("LUO")) {
@@ -78,6 +81,7 @@ public class KomentoPaneeliLogiikka {
 
     /**
      * Palauttaa "LUO"-komennon tulosteen.
+     *
      * @param komentoOsina Annettu komento pilkottuna
      * @return "LUO"-komennon tuloste
      */
@@ -87,6 +91,7 @@ public class KomentoPaneeliLogiikka {
 
     /**
      * Palauttaa "APUA"-komennon tulosteen.
+     *
      * @param komentoOsina Annettu komento pilkottuna
      * @return "APUA"-komennon tuloste
      */
@@ -105,6 +110,7 @@ public class KomentoPaneeliLogiikka {
 
     /**
      * Palauttaa "SUUNNAT"-komennon tulosteen.
+     *
      * @return Annettu komento pilkottuna
      */
     private String suunnatKomennonTuloste() {
@@ -117,6 +123,7 @@ public class KomentoPaneeliLogiikka {
 
     /**
      * Palauttaa "LIIKU"-komennon tulosteen.
+     *
      * @param komentoOsina Annettu komento pilkottuna
      * @return "LIIKU"-komennon tuloste
      */
@@ -130,6 +137,7 @@ public class KomentoPaneeliLogiikka {
 
     /**
      * Palauttaa "ALOITA"-komennon tulosteen.
+     *
      * @param komentoOsina Annettu komento osina
      * @return "ALOITA"-komennon tuloste
      */
@@ -144,8 +152,10 @@ public class KomentoPaneeliLogiikka {
     }
 
     /**
-     * Pilkkoo komennon osiin ja suorittaa komennon osien perusteella. Suorittaa VAIN Liiku-, Luo- ja Aloita-komennot.
-     * Tulostuskomennot suoriutuu haeKomennonTuloste()-metodilla.
+     * Pilkkoo komennon osiin ja suorittaa komennon osien perusteella. Suorittaa
+     * VAIN Liiku-, Luo- ja Aloita-komennot. Tulostuskomennot suoriutuu
+     * haeKomennonTuloste()-metodilla.
+     *
      * @param komento Käyttäjän antama komento.
      */
     public void toimintaKomennonSuoritus(String komento) {
@@ -175,8 +185,10 @@ public class KomentoPaneeliLogiikka {
     }
 
     /**
-     * Luo pelaajat komennon parametrien mukaan.
-     * komentoOsina[1] = Koti/Vieras, komentoOsina[2] = Pelaajan nimi komentoOsina[3] = Joukkueen nimi komentoOsina[4] = Joukkueen koko
+     * Luo pelaajat komennon parametrien mukaan. komentoOsina[1] = Koti/Vieras,
+     * komentoOsina[2] = Pelaajan nimi komentoOsina[3] = Joukkueen nimi
+     * komentoOsina[4] = Joukkueen koko
+     *
      * @param komentoOsina Komento pilkottuna osiin
      */
     public void luoPelaaja(String[] komentoOsina) {
@@ -189,20 +201,32 @@ public class KomentoPaneeliLogiikka {
 
     /**
      * Tarkistaa onko annettu Luo-komento toimiva.
+     *
      * @param komentoOsina Annettu komento pilkottuna
      * @return true jos on, false jos ei
      */
     private boolean onkoLuoKomentoToimiva(String[] komentoOsina) {
         if (komentoOsina.length == 5 && (komentoOsina[1].equalsIgnoreCase("koti") || komentoOsina[1].equalsIgnoreCase("vieras"))
+                && onkoKomennonParametriNumeerinen(komentoOsina[4])
                 && Integer.parseInt(komentoOsina[4]) >= 1 && Integer.parseInt(komentoOsina[4]) <= 8) {
             return true;
         } else {
             return false;
         }
     }
+    
+    private boolean onkoKomennonParametriNumeerinen(String komennonParametri){
+        try{
+            int kokeiltava = Integer.parseInt(komennonParametri);
+        } catch(NumberFormatException Exception){
+            return false;
+        }
+        return true;
+    }
 
     /**
      * Tarkistaa onko annettu Suunnat-komento toimiva.
+     *
      * @param komentoOsina Annettu komento pilkottuna
      * @return true jos on, false jos ei
      */
@@ -216,6 +240,7 @@ public class KomentoPaneeliLogiikka {
 
     /**
      * Tarkistaa onko annettu Liiku-komento toimiva.
+     *
      * @param komentoOsina Annettu komento pilkottuna
      * @return true jos on, false jos ei
      */
@@ -280,6 +305,14 @@ public class KomentoPaneeliLogiikka {
      */
     private void liikuKomento(String[] komennonOsat) {
         taistelupeli.liikuta(taistelupeli.getVuorossaOlevaJoukkue().haeGladiaattori(komennonOsat[1]), suunnanValinta(komennonOsat[2]));
+    }
+
+    private void haeViimeisimmanIskunTuloste(int iskunDamage) {
+        if (iskunDamage == 0) {
+            komentopaneelinTuloste += "\nEi osunut!";
+        } else {
+            komentopaneelinTuloste += "\nDamage: " + iskunDamage;
+        }
     }
 
     /**
