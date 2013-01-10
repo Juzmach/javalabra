@@ -75,9 +75,25 @@ public class AreenaPaneeli extends JPanel implements Paivitettava{
         for (int y = 0; y < areena.length; y++) {
             for (int x = 0; x < areena[y].length; x++) {
                 if(areena[y][x].isKaytossa()){
-                    g.fillRect(50*x, 50*y, 10, 10);
+                    piirraGladiaattori(g,y,x);
                 }
             }
         }
+    }
+    
+    private void piirraGladiaattori(Graphics g,int y,int x){
+        int ikoninY = 50*y;
+        int ikoninX = 50*x;
+        g.fillRect(ikoninX+20, ikoninY, 10, 10);
+        for (int i = 1; i <= 3; i++) {
+            g.fillRect(ikoninX+10*i, ikoninY+10, 10, 10);
+        }
+        g.fillRect(ikoninX+20, ikoninY+20, 10, 10);
+        g.fillRect(ikoninX+10, ikoninY+30,10,10);
+        g.fillRect(ikoninX+20, ikoninY+30,10,10);
+        g.fillRect(ikoninX+30, ikoninY+30,10,10);
+        g.fillRect(ikoninX+10, ikoninY+40,10,10);
+        g.fillRect(ikoninX+30, ikoninY+40,10,10);
+        
     }
 }
