@@ -4,6 +4,8 @@
  */
 package testi;
 
+import java.awt.event.KeyListener;
+
 /**
  *
  * @author juzmach
@@ -15,12 +17,6 @@ public class Testi {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        String komento = "LIIKU      ANSSI        TAKAVASEN";
-        
-        String[] osat = komento.split("\\s+");
-        
-        System.out.println(osat[0]);
-        System.out.println(osat[1]);
-        System.out.println(osat[2]);
+        KuuntelijanTestaus kuuntelija = new KuuntelijanTestaus();
     }
 }

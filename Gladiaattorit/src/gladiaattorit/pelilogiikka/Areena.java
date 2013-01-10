@@ -39,7 +39,8 @@ public class Areena {
     }
 
     /**
-     * Asettaa molemmat joukkueet areenalle käyttäen asetaJoukkue(Joukkue, int) metodia.
+     * Asettaa molemmat joukkueet areenalle käyttäen asetaJoukkue(Joukkue, int)
+     * metodia.
      */
     private void asetaJoukkueet() {
         this.asetaJoukkue(vierasJoukkue, 0);
@@ -47,9 +48,10 @@ public class Areena {
     }
 
     /**
-     * Asettaa yhden joukkueen gladiaattorit oikeisiin ruutuihin.
-     * Jos kyseessä on kotijoukkue, asettaa se gladiaattorit areenan alareunaan.
-     * Jos on vierasjoukkue, asettaa se gladiaattorit yläreunaan.
+     * Asettaa yhden joukkueen gladiaattorit oikeisiin ruutuihin. Jos kyseessä
+     * on kotijoukkue, asettaa se gladiaattorit areenan alareunaan. Jos on
+     * vierasjoukkue, asettaa se gladiaattorit yläreunaan.
+     *
      * @param asetettavaJoukkue Asetettava joukkue
      * @param alkuY Joukkueen ensimmäisen rivin määrittävä apumetodi
      */

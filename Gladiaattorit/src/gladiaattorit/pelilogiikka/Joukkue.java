@@ -47,7 +47,9 @@ public class Joukkue {
     }
 
     /**
-     * Lisää joukkueeseen yhden gladiaattorin, jos kyseistä gladiaattoria ei löydy vielä joukkueesta.
+     * Lisää joukkueeseen yhden gladiaattorin, jos kyseistä gladiaattoria ei
+     * löydy vielä joukkueesta.
+     *
      * @param lisattava
      */
     public void lisaaGladiaattori(Gladiaattori lisattava) {
@@ -58,6 +60,7 @@ public class Joukkue {
 
     /**
      * Hakee gladiaattorin nimen mukaan
+     *
      * @param gladiaattorinNimi
      * @return Gladiaattori, jolla parametrina annettu nimi
      */
@@ -74,6 +77,7 @@ public class Joukkue {
 
     /**
      * Hakee gladiaattorin pelinumeron mukaan
+     *
      * @param peliNumero
      * @return Gladiaattorin, jolla parametrina annettu pelinumero
      */
@@ -87,15 +91,15 @@ public class Joukkue {
         }
         return null;
     }
-    
+
     /**
      *
      * @return boolean-arvo, joka kertoo onko koko joukkue kuollut
      */
-    public boolean onkoJoukkueKuollut(){
+    public boolean onkoJoukkueKuollut() {
         boolean joukkueElossa = true;
         for (Gladiaattori gladiaattori : gladiaattorit) {
-            if(gladiaattori.isElossa()){
+            if (gladiaattori.isElossa()) {
                 joukkueElossa = false;
                 break;
             }
@@ -114,8 +118,11 @@ public class Joukkue {
     @Override
     public String toString() {
         String tuloste = this.nimi + "\n";
+        tuloste += "Nimi               # Attribuutit\n";
         for (Gladiaattori gladiaattori : gladiaattorit) {
-            tuloste += gladiaattori.toString() + "\n";
+            if (gladiaattori.isElossa()) {
+                tuloste += gladiaattori.toString() + "\n";
+            }
         }
         return tuloste;
     }

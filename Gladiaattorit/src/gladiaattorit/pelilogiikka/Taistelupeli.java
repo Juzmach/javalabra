@@ -23,8 +23,7 @@ public class Taistelupeli {
      */
     private Pelaaja vieras;
     /**
-     * Kumman vuoro kyseessä.
-     * Joko "Koti" tai "Vieras"
+     * Kumman vuoro kyseessä. Joko "Koti" tai "Vieras"
      */
     private String kenenVuoro;
 
@@ -52,45 +51,51 @@ public class Taistelupeli {
     }
 
     /**
-     * Liikuttaa gladiaattoria käyttäen Pelaaja-luokan liikuta(Gladiaattori,Ruutu)-metodia, jos peli ei ole päättynyt.
-     * Gladiaattorin uusi ruutu saadaan lisäämällä oikean Suunta-olion sisältämät muutosarvot vanhan ruudun koordinaatteihin.
+     * Liikuttaa gladiaattoria käyttäen Pelaaja-luokan
+     * liikuta(Gladiaattori,Ruutu)-metodia, jos peli ei ole päättynyt.
+     * Gladiaattorin uusi ruutu saadaan lisäämällä oikean Suunta-olion
+     * sisältämät muutosarvot vanhan ruudun koordinaatteihin.
+     *
      * @param liikutettava Liikutettava gladiaattori
      * @param suunta Suunta-olio, jolla määritetään uuden ruudun sijainti
      */
     public void liikuta(Gladiaattori liikutettava, Suunta suunta) {
         int uudenRuudunY = liikutettava.getRuutu().getRuudunY() + suunta.getY();
         int uudenRuudunX = liikutettava.getRuutu().getRuudunX() + suunta.getX();
-        this.liikuta(liikutettava,uudenRuudunY,uudenRuudunX);
+        this.liikuta(liikutettava, uudenRuudunY, uudenRuudunX);
     }
-    
+
     /**
-     * Liikuttaa gladiaattoria käyttäen Pelaaja-luokan liikuta(Gladiaattori liikutettava, int y, int x)-metodia
+     * Liikuttaa gladiaattoria käyttäen Pelaaja-luokan liikuta(Gladiaattori
+     * liikutettava, int y, int x)-metodia
+     *
      * @param liikutettava Liikutettava gladiaattori
      * @param y Uuden ruudun y-koordinaatti
      * @param x Uuden ruudun x-koordinaatti
      */
-    public void liikuta(Gladiaattori liikutettava, int y, int x){
-        if(!this.onkoPeliPaattynyt()){
-        
-        if (this.onkoRuutuAreenalla(y,x)) {
-            if (this.kenenVuoro.equals("Koti")) {
-                koti.liikuta(liikutettava, areena.getAreena()[y][x]);
-            } else {
-                vieras.liikuta(liikutettava, areena.getAreena()[y][x]);
+    public void liikuta(Gladiaattori liikutettava, int y, int x) {
+        if (!this.onkoPeliPaattynyt()) {
+
+            if (this.onkoRuutuAreenalla(y, x)) {
+                if (this.kenenVuoro.equals("Koti")) {
+                    koti.liikuta(liikutettava, areena.getAreena()[y][x]);
+                } else {
+                    vieras.liikuta(liikutettava, areena.getAreena()[y][x]);
+                }
+                this.vaihdaVuoroa();
             }
-            this.vaihdaVuoroa();
-        }
         }
     }
 
     /**
      * Tarkistaa onko uusi ruutu areenan reunojen sisäpuolella
+     *
      * @param uudenRuudunY Uuden ruudun Y-koordinaatti
      * @param uudenRuudunX Uuden ruudun X-koordinaatti
      * @return palauttaa true, jos on sisäpuolella. False, jos ei.
      */
-    private boolean onkoRuutuAreenalla(int uudenRuudunY,int uudenRuudunX) {
-        if (uudenRuudunY <= areena.getAreena().length -1 && uudenRuudunY >= 0 && uudenRuudunX <= areena.getAreena()[uudenRuudunY].length -1 && uudenRuudunX >= 0) {
+    private boolean onkoRuutuAreenalla(int uudenRuudunY, int uudenRuudunX) {
+        if (uudenRuudunY <= areena.getAreena().length - 1 && uudenRuudunY >= 0 && uudenRuudunX <= areena.getAreena()[uudenRuudunY].length - 1 && uudenRuudunX >= 0) {
             return true;
         } else {
             return false;
@@ -110,8 +115,8 @@ public class Taistelupeli {
      * @param kenenVuoro Asettaa suoraan vuoron jommalle kummalle
      */
     public void setKenenVuoro(String kenenVuoro) {
-        if(kenenVuoro.equals("Koti") || kenenVuoro.equals("Vieras")){
-        this.kenenVuoro = kenenVuoro;
+        if (kenenVuoro.equals("Koti") || kenenVuoro.equals("Vieras")) {
+            this.kenenVuoro = kenenVuoro;
         }
     }
 
@@ -138,25 +143,25 @@ public class Taistelupeli {
             this.kenenVuoro = "Vieras";
         }
     }
-    
+
     /**
      *
      * @return Voittajajoukkueen Joukkue-olio
      */
-    public Joukkue getVoittajaJoukkue(){
-        if(this.onkoPeliPaattynyt()){
+    public Joukkue getVoittajaJoukkue() {
+        if (this.onkoPeliPaattynyt()) {
             return this.getVuorossaOlevaJoukkue();
         } else {
             return null;
         }
     }
-            
+
     /**
      *
      * @return boolean-arvo, joka kertoo onko peli päättynyt
      */
-    public boolean onkoPeliPaattynyt(){
-        if(koti.getJoukkue().onkoJoukkueKuollut() || vieras.getJoukkue().onkoJoukkueKuollut()){
+    public boolean onkoPeliPaattynyt() {
+        if (koti.getJoukkue().onkoJoukkueKuollut() || vieras.getJoukkue().onkoJoukkueKuollut()) {
             return true;
         }
         return false;

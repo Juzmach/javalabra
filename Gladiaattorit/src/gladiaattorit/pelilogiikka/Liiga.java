@@ -16,7 +16,7 @@ public class Liiga {
     private List<Joukkue> joukkueet;
 
     /**
-     * 
+     *
      */
     public Liiga() {
         this.joukkueet = new ArrayList<Joukkue>();
@@ -34,6 +34,7 @@ public class Liiga {
 
     /**
      * Hakee joukkueen nimen mukaan
+     *
      * @param joukkueenNimi
      * @return Joukkue, jolla parametrina annettu nimi
      */

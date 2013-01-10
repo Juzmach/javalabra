@@ -32,16 +32,16 @@ public class Gladiaattori {
     private int peliNumero;
 
     /**
-     * Gladiaattorin voima ja energia arvotaan satunnaisesti. Voima väliltä 3-8
-     * ja Energia väliltä 15-35.
+     * Gladiaattorin voima ja energia arvotaan satunnaisesti. Voima väliltä 5-8
+     * ja Energia väliltä 25-35.
      *
      * @param nimi Gladiaattorin nimi
      * @param peliNumero Gladiaattorin pelinumero
      */
     public Gladiaattori(String nimi, int peliNumero) {
         this.nimi = nimi.toUpperCase();
-        this.voima = 3 + (int) (Math.random() * 6);
-        this.energia = 15 + (int) (Math.random() * 21);
+        this.voima = 5 + (int) (Math.random() * 4);
+        this.energia = 25 + (int) (Math.random() * 11);
         this.elossa = true;
         this.ruutu = null;
         this.peliNumero = peliNumero;

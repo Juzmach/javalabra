@@ -4,14 +4,14 @@
  */
 package gladiaattorit.kayttoliittyma.graafinen.grafiikka;
 
+import gladiaattorit.kayttoliittyma.graafinen.logiikka.KomentoPaneeliLogiikka;
+import gladiaattorit.kayttoliittyma.graafinen.logiikka.KomentoPaneelinKuuntelija;
 import gladiaattorit.pelilogiikka.Taistelupeli;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 /**
@@ -19,7 +19,7 @@ import javax.swing.WindowConstants;
  * @author juusostr
  */
 public class Kayttoliittyma implements Runnable {
-    
+
     /**
      * JFrame-olio, jossa koko käyttöliittymä.
      */
@@ -36,32 +36,41 @@ public class Kayttoliittyma implements Runnable {
      * Komentopaneeli-olio, joka kuvaa komentoriviä.
      */
     private KomentoPaneeli komentopaneeli;
-    
+    private KomentoPaneeliLogiikka komentologiikka;
+    private KomentoPaneelinKuuntelija komentokuuntelija;
     /**
-     * Luo Taistelupeli-olion käyttäen "Koti","Kotijoukkue","Vieras","Vierasjoukkue" -parametrejä.
+     * Luo Taistelupeli-olion käyttäen
+     * "Koti","Kotijoukkue","Vieras","Vierasjoukkue" -parametrejä.
+     */
+    private InfoPaneeli infopaneeli;
+
+    /**
+     * Alustaa Kayttoliittyma-luokan Taistelupeli- ja KomentoPaneeliLogiikka-oliot.
      */
     public Kayttoliittyma() {
         this.taistelupeli = new Taistelupeli("Koti", "Kotijoukkue", "Vieras", "Vierasjoukkue");
+        this.komentologiikka = new KomentoPaneeliLogiikka(taistelupeli);
     }
-    
+
     /**
      * Käynnistää käyttöliittymän suorituksen.
      */
     @Override
     public void run() {
         frame = new JFrame("Gladiaattorit");
-        Dimension size = new Dimension(600, 600);
+        Dimension size = new Dimension(650, 620);
         frame.setPreferredSize(size);
-        frame.setResizable(true);
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         luoKomponentit(frame.getContentPane());
-        
+
         frame.pack();
         frame.setVisible(true);
     }
-    
+
     /**
      * Luo käyttöliittymän komponentit.
+     *
      * @param container JFramen ContentPane-olio
      */
     private void luoKomponentit(Container container) {
@@ -70,16 +79,18 @@ public class Kayttoliittyma implements Runnable {
         luoPaneelit();
         container.add(areenapaneeli);
         container.add(komentopaneeli, BorderLayout.SOUTH);
+        container.add(infopaneeli, BorderLayout.EAST);
     }
-    
+
     /**
      * Alustaa AreenaPaneelin ja KomentoPaneelin.
      */
-    private void luoPaneelit(){
+    private void luoPaneelit() {
         areenapaneeli = new AreenaPaneeli(taistelupeli);
-        komentopaneeli = new KomentoPaneeli(taistelupeli,areenapaneeli);
+        infopaneeli = new InfoPaneeli(taistelupeli);
+        komentopaneeli = new KomentoPaneeli(taistelupeli, areenapaneeli, infopaneeli);
     }
-    
+
     /**
      *
      * @return Käyttöliittymän JFrame-olio

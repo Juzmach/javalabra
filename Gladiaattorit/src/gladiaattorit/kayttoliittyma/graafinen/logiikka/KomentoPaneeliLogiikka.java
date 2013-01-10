@@ -49,7 +49,9 @@ public class KomentoPaneeliLogiikka {
     }
 
     /**
-     * Palauttaa rivin, joka tulostetaan komentoruudulle komennon suorituksen jälkeen.
+     * Palauttaa rivin, joka tulostetaan komentoruudulle komennon suorituksen
+     * jälkeen.
+     *
      * @param komento Käyttäjän antama komento
      * @return Rivi, joka tulostuu komentoruudulle komennon suorituksen jälkeen
      */
@@ -57,16 +59,19 @@ public class KomentoPaneeliLogiikka {
         komentoOsina = komento.toUpperCase().split("\\s+");
         luoMahdolliset();
         if (!onkoKomentoToimiva(komentoOsina)) {
-            komentopaneelinTuloste += "\nKomento ei ole toimiva! Yritä uudestaan.";
+            komentopaneelinTuloste = "\nKomento ei ole toimiva! Yritä uudestaan.";
             return komentopaneelinTuloste;
         } else if (komentoOsina[0].equals("LIIKU")) {
-            komentopaneelinTuloste += "\nLiikutetaan: " + komentoOsina[1] + " " + komentoOsina[2];
+            komentopaneelinTuloste = "\nLiikutetaan: " + komentoOsina[1] + " " + komentoOsina[2];
+        } else if (komentoOsina[0].equals("SUUNNAT")) {
+            komentopaneelinTuloste = "\nSUUNNAT\nETEEN TAAKSE VASEN OIKEA ETUVASEN ETUOIKEA TAKAVASEN TAKAOIKEA";
         }
         return komentopaneelinTuloste;
     }
 
     /**
      * Pilkkoo komennon osiin ja suorittaa komennon osien perusteella.
+     *
      * @param komento Käyttäjän antama komento.
      */
     public void komennonSuoritus(String komento) {
@@ -74,16 +79,21 @@ public class KomentoPaneeliLogiikka {
         luoMahdolliset();
         if (onkoKomentoToimiva(komentoOsina) && komentoOsina[0].equals("LIIKU")) {
             liikuKomento(komentoOsina);
-        } else if (komentoOsina[0].equals("TULOSTA")) {
+        } else if (komentoOsina[0].equals("SUUNNAT")) {
+            return;
         }
     }
 
     /**
      * Tarkastaa onko komento toimiva.
+     *
      * @param komentoOsina Komento pilkottuna osiin
      * @return true, jos komento toimii, false jos ei
      */
     public boolean onkoKomentoToimiva(String[] komentoOsina) {
+        if (komentoOsina[0].equals("SUUNNAT") && komentoOsina.length == 1) {
+            return true;
+        }
         if (komentoOsina.length == 3
                 && mahdollisetKomennot.contains(komentoOsina[0])
                 && mahdollisetGladiaattorit.contains(komentoOsina[1])
@@ -97,7 +107,8 @@ public class KomentoPaneeliLogiikka {
     }
 
     /**
-     * Luo listat mahdollisista komennoista, suunnista ja gladiaattorien nimistä käyttäen näiden apumetodeja.
+     * Luo listat mahdollisista komennoista, suunnista ja gladiaattorien nimistä
+     * käyttäen näiden apumetodeja.
      */
     private void luoMahdolliset() {
         luoMahdollisetKomennotLista();
@@ -129,12 +140,14 @@ public class KomentoPaneeliLogiikka {
      */
     private void luoMahdollisetKomennotLista() {
         mahdollisetKomennot.add("LIIKU");
-        mahdollisetKomennot.add("TULOSTA");
+        mahdollisetKomennot.add("SUUNNAT");
     }
 
     /**
-     * Apumetodi, joka suorittaa varsinaisen liikkumistoiminnon käyttäen Taistelupeli-luokan liikuta(Gladiaattori,Suunta)-metodia.
-     * @param komennonOsat 
+     * Apumetodi, joka suorittaa varsinaisen liikkumistoiminnon käyttäen
+     * Taistelupeli-luokan liikuta(Gladiaattori,Suunta)-metodia.
+     *
+     * @param komennonOsat
      */
     private void liikuKomento(String[] komennonOsat) {
         taistelupeli.liikuta(taistelupeli.getVuorossaOlevaJoukkue().haeGladiaattori(komennonOsat[1]), suunnanValinta(komennonOsat[2]));
@@ -142,6 +155,7 @@ public class KomentoPaneeliLogiikka {
 
     /**
      * Valitsee oikean Suunta-olion.
+     *
      * @param suunta Komennosta otettu suunnan nimi.
      * @return Parametria vastaava Suunta-olio. Palauttaa null, jos ei löydy.
      */

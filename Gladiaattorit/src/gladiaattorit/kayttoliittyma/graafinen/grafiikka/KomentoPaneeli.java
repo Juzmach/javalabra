@@ -4,6 +4,7 @@
  */
 package gladiaattorit.kayttoliittyma.graafinen.grafiikka;
 
+import gladiaattorit.kayttoliittyma.graafinen.logiikka.KomentoPaneeliLogiikka;
 import gladiaattorit.kayttoliittyma.graafinen.logiikka.KomentoPaneelinKuuntelija;
 import gladiaattorit.pelilogiikka.Taistelupeli;
 import java.awt.BorderLayout;
@@ -46,6 +47,9 @@ public class KomentoPaneeli extends JPanel implements Paivitettava {
      * AreenaPaneeli-olio, joka kuvaa peliareenaa.
      */
     private AreenaPaneeli areenapaneeli;
+    private InfoPaneeli infopaneeli;
+    private KomentoPaneeliLogiikka komentologiikka;
+    private KomentoPaneelinKuuntelija komentokuuntelija;
 
     /**
      * Asettaa KomentoPaneelin LayoutManageriksi BorderLayoutin, asettaa kooksi
@@ -53,12 +57,16 @@ public class KomentoPaneeli extends JPanel implements Paivitettava {
      *
      * @param taistelupeli Taistelupeli-olio
      * @param areenapaneeli AreenaPaneeli-olio
+     * @param infopaneeli InfoPaneeli-olio
      */
-    public KomentoPaneeli(Taistelupeli taistelupeli, AreenaPaneeli areenapaneeli) {
+    public KomentoPaneeli(Taistelupeli taistelupeli, AreenaPaneeli areenapaneeli, InfoPaneeli infopaneeli) {
         super.setLayout(new BorderLayout());
         super.setSize(200, 100);
         this.taistelupeli = taistelupeli;
         this.areenapaneeli = areenapaneeli;
+        this.infopaneeli = infopaneeli;
+        this.komentologiikka = new KomentoPaneeliLogiikka(taistelupeli);
+        this.komentokuuntelija = new KomentoPaneelinKuuntelija(komentologiikka, this, areenapaneeli, infopaneeli);
         this.luoKomponentit();
     }
 
@@ -76,7 +84,7 @@ public class KomentoPaneeli extends JPanel implements Paivitettava {
      */
     private void luoSuoritaNappi() {
         suoritaNappi = new JButton("Suorita");
-        suoritaNappi.addActionListener(new KomentoPaneelinKuuntelija(this, areenapaneeli, taistelupeli));
+        suoritaNappi.addActionListener(komentokuuntelija);
         add(suoritaNappi, BorderLayout.EAST);
     }
 
@@ -86,6 +94,7 @@ public class KomentoPaneeli extends JPanel implements Paivitettava {
     private void luoKomentorivi() {
         komentorivi = new JTextField();
         komentorivi.setPreferredSize(new Dimension(200, 20));
+        komentorivi.addKeyListener(komentokuuntelija);
         add(komentorivi);
     }
 
@@ -94,7 +103,7 @@ public class KomentoPaneeli extends JPanel implements Paivitettava {
      */
     private void luoKomentoruutu() {
 
-        komentoruutu = new JTextArea();
+        komentoruutu = new JTextArea("Peli alkaa!\n" + "Vuorossa: " + taistelupeli.getKenenVuoro());
         komentoruutu.setEditable(false);
         komentoruutu.setBackground(Color.WHITE);
         rullattavaKomentoruutu = new JScrollPane(komentoruutu, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -132,6 +141,6 @@ public class KomentoPaneeli extends JPanel implements Paivitettava {
      */
     @Override
     public void paivita() {
-        repaint();
+        komentoruutu.append(komentologiikka.haeKomennonTuloste(komentorivi.getText()) + "\nVuorossa: " + taistelupeli.getKenenVuoro());
     }
 }

@@ -53,6 +53,7 @@ public class Ruutu {
 
     /**
      * Asettaa gladiaattorin ruudulle, jos ruutu ei ole käytössä
+     *
      * @param asetettava Asetettava gladiaattori
      */
     public void asetaGladiaattori(Gladiaattori asetettava) {
@@ -89,12 +90,10 @@ public class Ruutu {
 
     @Override
     public String toString() {
-        if(this.kaytossa){
+        if (this.kaytossa) {
             return "" + this.gladiaattori.getPeliNumero();
         } else {
             return " ";
         }
     }
-    
-    
 }

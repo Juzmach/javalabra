@@ -44,11 +44,11 @@ public class Pelaaja {
 
     /**
      * Luo pelaajalle kahdeksanhenkisen joukkueen.
-     * 
+     *
      * @param nimi Joukkueen nimi
      * @return Kahdeksanhenkinen joukkue
      */
-    private Joukkue luoJoukkue(String nimi) {
+    public Joukkue luoJoukkue(String nimi) {
         Joukkue joukkue = new Joukkue(nimi);
         for (int i = 1; i <= 8; i++) {
             joukkue.lisaaGladiaattori(new Gladiaattori("Taistelija" + i, i));
@@ -62,5 +62,10 @@ public class Pelaaja {
      */
     public Joukkue getJoukkue() {
         return joukkue;
+    }
+
+    @Override
+    public String toString() {
+        return this.nimi + "\n" + this.joukkue.toString();
     }
 }

@@ -74,7 +74,6 @@ public enum Suunta {
      * "Vieras"-pelaajan takaoikea
      */
     VIERASTAKAOIKEA(-1, 1);
-    
     /**
      * Suunnan Y-koordinaatin arvo, jolla määritetään gladiaattorin uusi ruutu
      * lisäämällä vanhan ruudun Y-koordinaatin arvoon
