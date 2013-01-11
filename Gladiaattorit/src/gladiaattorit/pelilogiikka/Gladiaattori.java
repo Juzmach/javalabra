@@ -34,16 +34,15 @@ public class Gladiaattori {
     private boolean olikoIsku;
 
     /**
-     * Gladiaattorin voima ja energia arvotaan satunnaisesti. Voima väliltä 10-40
-     * ja Energia väliltä 75-100.
-     *
+     * Gladiaattorin voima ja energia arvotaan satunnaisesti.
+     * 
      * @param nimi Gladiaattorin nimi
      * @param peliNumero Gladiaattorin pelinumero
      */
     public Gladiaattori(String nimi, int peliNumero) {
         this.nimi = nimi.toUpperCase();
-        this.voima = 10 + (int) (Math.random() * 26);
-        this.energia = 75 + (int) (Math.random() * 101);
+        this.voima = 10;
+        this.energia = 100;
         this.elossa = true;
         this.ruutu = null;
         this.peliNumero = peliNumero;
@@ -122,18 +121,19 @@ public class Gladiaattori {
      * Vähentää gladiaattorin energiaa toisen gladiaattorin aiheuttaman vahingon
      * verran.
      *
-     * @param maara "Damage" eli toisen gladiaattorin aiheuttama vahinko
+     * @param damage Toisen gladiaattorin aiheuttama vahinko
      */
-    public void vahennaEnergiaa(int maara) {
-        if ((this.energia -= maara) <= 0) {
-            this.energia = 0;
-            this.elossa = false;
-            this.ruutu.setKaytossa(false);
-
-        } else {
-            this.energia -= maara;
+    public void vahennaEnergiaa(int damage) {
+        this.energia -= damage;
+        if(this.energia <= 0){
+            kaadu();
         }
-
+    }
+    
+    private void kaadu(){
+        this.energia = 0;
+        this.elossa = false;
+        this.ruutu.setKaytossa(false);
     }
 
     /**
@@ -146,9 +146,9 @@ public class Gladiaattori {
             ruutu.setKaytossa(false);
             uusiRuutu.asetaGladiaattori(this);
             this.ruutu = uusiRuutu;
-            this.olikoIsku = false;
+            
         }
-        this.viimeisinTehtyDamage = 0;
+        this.olikoIsku = false;
     }
 
     /**
@@ -159,7 +159,7 @@ public class Gladiaattori {
     public void iske(Gladiaattori vastustaja) {
         int damage = 0;
         if (osuuko()) {
-            damage = 10+(int)(Math.random() * voima);
+            damage = voima;
             vastustaja.vahennaEnergiaa(damage);
         }
         this.olikoIsku = true;
@@ -168,7 +168,7 @@ public class Gladiaattori {
 
     private boolean osuuko() {
         double osumisprosentti = Math.random();
-        if (osumisprosentti >= 0.5) {
+        if (osumisprosentti >= 0.3) {
             return true;
         } else {
             return false;

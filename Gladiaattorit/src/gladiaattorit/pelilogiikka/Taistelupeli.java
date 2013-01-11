@@ -38,7 +38,6 @@ public class Taistelupeli {
      * False, jos vierasjoukkuetta ei ole vielä luotu, true jos on.
      */
     private boolean vierasjoukkueLuotu;
-    
     private String viimeisimmanIskunTuloste;
 
     /**
@@ -53,7 +52,7 @@ public class Taistelupeli {
     }
 
     /**
-     * Uusi "Default"-konstruktori. 
+     * Uusi "Default"-konstruktori.
      */
     public Taistelupeli() {
         this.areena = new Areena();
@@ -66,8 +65,8 @@ public class Taistelupeli {
     }
 
     /**
-     * 
-     * @param koti 
+     *
+     * @param koti
      */
     public void setKoti(Pelaaja koti) {
         this.koti = koti;
@@ -76,7 +75,7 @@ public class Taistelupeli {
 
     /**
      *
-     * @param vieras 
+     * @param vieras
      */
     public void setVieras(Pelaaja vieras) {
         this.vieras = vieras;
@@ -249,8 +248,9 @@ public class Taistelupeli {
     public boolean onkoPeliPaattynyt() {
         if (koti.getJoukkue().onkoJoukkueKuollut() || vieras.getJoukkue().onkoJoukkueKuollut()) {
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     /**

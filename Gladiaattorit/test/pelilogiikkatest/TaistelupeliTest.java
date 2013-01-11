@@ -5,6 +5,7 @@ package pelilogiikkatest;
  * and open the template in the editor.
  */
 import gladiaattorit.pelilogiikka.Gladiaattori;
+import gladiaattorit.pelilogiikka.Joukkue;
 import gladiaattorit.pelilogiikka.Pelaaja;
 import gladiaattorit.pelilogiikka.Ruutu;
 import gladiaattorit.pelilogiikka.Suunta;
@@ -106,5 +107,23 @@ public class TaistelupeliTest {
             gladiaattori.vahennaEnergiaa(gladiaattori.getEnergia());
         }
         assertEquals(taistelu.getKoti().getJoukkue().getNimi(),taistelu.getVoittajaJoukkue().getNimi());
+    }
+    
+    @Test
+    public void onkoPeliPaattynytPalauttaaTrueJosVierasJoukkueKuollut(){
+        tapaJoukkue(taistelu.getVieras().getJoukkue());
+        assertTrue("Peli ei päättynyt!",taistelu.onkoPeliPaattynyt());
+    }
+    
+    private void tapaJoukkue(Joukkue joukkue){
+        for (Gladiaattori gladiaattori : joukkue.getGladiaattorit()) {
+            gladiaattori.vahennaEnergiaa(gladiaattori.getEnergia());
+        }
+    }
+    
+    @Test
+    public void onkoPeliPaattynytPalauttaaTrueJosKotiJoukkueKuollut(){
+        tapaJoukkue(taistelu.getKoti().getJoukkue());
+        assertTrue("Peli ei päättynyt",taistelu.onkoPeliPaattynyt());
     }
 }

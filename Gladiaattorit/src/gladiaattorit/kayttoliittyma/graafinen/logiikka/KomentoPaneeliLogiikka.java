@@ -1,6 +1,7 @@
 package gladiaattorit.kayttoliittyma.graafinen.logiikka;
 
 import gladiaattorit.pelilogiikka.Gladiaattori;
+import gladiaattorit.pelilogiikka.Joukkue;
 import gladiaattorit.pelilogiikka.Pelaaja;
 import gladiaattorit.pelilogiikka.Suunta;
 import gladiaattorit.pelilogiikka.Taistelupeli;
@@ -36,6 +37,7 @@ public class KomentoPaneeliLogiikka {
      * Rivi, joka tulostuu komentoruudulle, kun komento on suoritettu.
      */
     private String komentopaneelinTuloste;
+    private Joukkue vuoronSuorittanutJoukkue;
 
     /**
      *
@@ -47,6 +49,7 @@ public class KomentoPaneeliLogiikka {
         this.mahdollisetKomennot = new ArrayList<String>();
         this.mahdollisetSuunnat = new ArrayList<String>();
         this.komentopaneelinTuloste = "";
+        this.vuoronSuorittanutJoukkue = null;
     }
 
     /**
@@ -62,8 +65,8 @@ public class KomentoPaneeliLogiikka {
 
         if (onkoLiikuKomentoToimiva(komentoOsina) && komentoOsina[0].equals("LIIKU")) {
             komentopaneelinTuloste = liikuKomennonTuloste(komentoOsina);
-            if (taistelupeli.getVuorossaOlevaJoukkue().haeGladiaattori(komentoOsina[1]).olikoIsku()) {
-                haeViimeisimmanIskunTuloste(taistelupeli.getVuorossaOlevaJoukkue().haeGladiaattori(komentoOsina[1]).getViimeisinTehtyDamage());
+            if (vuoronSuorittanutJoukkue.haeGladiaattori(komentoOsina[1]).olikoIsku()) {
+                haeViimeisimmanIskunTuloste(vuoronSuorittanutJoukkue.haeGladiaattori(komentoOsina[1]).getViimeisinTehtyDamage());
             }
         } else if (onkoSuunnatKomentoToimiva(komentoOsina) && komentoOsina[0].equals("SUUNNAT")) {
             komentopaneelinTuloste = suunnatKomennonTuloste();
@@ -214,11 +217,11 @@ public class KomentoPaneeliLogiikka {
             return false;
         }
     }
-    
-    private boolean onkoKomennonParametriNumeerinen(String komennonParametri){
-        try{
+
+    private boolean onkoKomennonParametriNumeerinen(String komennonParametri) {
+        try {
             int kokeiltava = Integer.parseInt(komennonParametri);
-        } catch(NumberFormatException Exception){
+        } catch (NumberFormatException Exception) {
             return false;
         }
         return true;
@@ -262,7 +265,7 @@ public class KomentoPaneeliLogiikka {
      * käyttäen näiden apumetodeja.
      */
     private void luoMahdolliset() {
-        luoMahdollisetKomennotLista();
+        luoMahdollisetToimintakomennotLista();
         luoMahdollisetSuunnatLista();
         luoMahdollisetGladiaattoritLista();
 
@@ -283,6 +286,7 @@ public class KomentoPaneeliLogiikka {
      * Apumetodi, joka luo listan mahdollisista suunnista.
      */
     private void luoMahdollisetSuunnatLista() {
+        mahdollisetSuunnat.clear();
         String[] kaikkiSuunnat = "ETEEN TAAKSE VASEN OIKEA ETUVASEN ETUOIKEA TAKAVASEN TAKAOIKEA".split("\\s+");
         for (int i = 0; i < kaikkiSuunnat.length; i++) {
             mahdollisetSuunnat.add(kaikkiSuunnat[i]);
@@ -292,7 +296,7 @@ public class KomentoPaneeliLogiikka {
     /**
      * Apumetodi, joka luo listan mahdollisista komennoista.
      */
-    private void luoMahdollisetKomennotLista() {
+    private void luoMahdollisetToimintakomennotLista() {
         mahdollisetKomennot.add("LIIKU");
         mahdollisetKomennot.add("SUUNNAT");
     }
@@ -304,7 +308,10 @@ public class KomentoPaneeliLogiikka {
      * @param komennonOsat
      */
     private void liikuKomento(String[] komennonOsat) {
-        taistelupeli.liikuta(taistelupeli.getVuorossaOlevaJoukkue().haeGladiaattori(komennonOsat[1]), suunnanValinta(komennonOsat[2]));
+        if (!taistelupeli.onkoPeliPaattynyt()) {
+            this.vuoronSuorittanutJoukkue = taistelupeli.getVuorossaOlevaJoukkue();
+            taistelupeli.liikuta(vuoronSuorittanutJoukkue.haeGladiaattori(komennonOsat[1]), suunnanValinta(komennonOsat[2]));
+        }
     }
 
     private void haeViimeisimmanIskunTuloste(int iskunDamage) {

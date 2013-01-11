@@ -78,7 +78,7 @@ public class PelaajaTest {
         vieras.liikuta(vieras.getJoukkue().haeGladiaattori(1), areena.getAreena()[3][4]);
         koti.liikuta(koti.getJoukkue().haeGladiaattori(1), vieras.getJoukkue().haeGladiaattori(1).getRuutu());
         
-        assertFalse("Taistelija ei iskenyt!", (vieras.getJoukkue().haeGladiaattori(1).getEnergia() == vastustajanEnergiaAlussa));
+        assertTrue("Taistelija ei iskenyt!", koti.getJoukkue().haeGladiaattori(1).olikoIsku());
     }
 
     /**

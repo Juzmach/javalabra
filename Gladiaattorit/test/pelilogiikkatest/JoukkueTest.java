@@ -112,7 +112,7 @@ public class JoukkueTest {
      *
      */
     @Test
-    public void onkoJoukkueElossaMetodiPalauttaaTrueJosKaikkiOvatKuolleet(){
+    public void onkoJoukkueKuollutMetodiPalauttaaTrueJosKaikkiOvatKuolleet(){
         this.luoHalutunKokoinenJoukkue(8);
         for (Gladiaattori gladiaattori : joukkue.getGladiaattorit()) {
             gladiaattori.vahennaEnergiaa(gladiaattori.getEnergia());

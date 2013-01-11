@@ -97,14 +97,14 @@ public class Joukkue {
      * @return boolean-arvo, joka kertoo onko koko joukkue kuollut
      */
     public boolean onkoJoukkueKuollut() {
-        boolean joukkueElossa = true;
+        boolean joukkueKuollut = true;
         for (Gladiaattori gladiaattori : gladiaattorit) {
             if (gladiaattori.isElossa()) {
-                joukkueElossa = false;
+                joukkueKuollut = false;
                 break;
             }
         }
-        return joukkueElossa;
+        return joukkueKuollut;
     }
 
     /**
