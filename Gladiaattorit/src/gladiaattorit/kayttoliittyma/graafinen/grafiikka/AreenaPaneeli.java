@@ -96,9 +96,12 @@ public class AreenaPaneeli extends JPanel implements Paivitettava {
             g.fillRect(ikoninX + 10 * i, ikoninY + 10, 10, 10);
         }
         g.fillRect(ikoninX + 20, ikoninY + 20, 10, 10);
-        g.fillRect(ikoninX + 10, ikoninY + 30, 10, 10);
-        g.fillRect(ikoninX + 20, ikoninY + 30, 10, 10);
-        g.fillRect(ikoninX + 30, ikoninY + 30, 10, 10);
+        for (int i = 1; i <= 3; i++) {
+            g.fillRect(ikoninX +10*i, ikoninY+30, 10, 10);
+        }
+//        g.fillRect(ikoninX + 10, ikoninY + 30, 10, 10);
+//        g.fillRect(ikoninX + 20, ikoninY + 30, 10, 10);
+//        g.fillRect(ikoninX + 30, ikoninY + 30, 10, 10);
         g.fillRect(ikoninX + 10, ikoninY + 40, 10, 10);
         g.fillRect(ikoninX + 30, ikoninY + 40, 10, 10);
     }

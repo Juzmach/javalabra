@@ -148,6 +148,7 @@ public class Gladiaattori {
             this.ruutu = uusiRuutu;
             this.olikoIsku = false;
         }
+        this.viimeisinTehtyDamage = 0;
     }
 
     /**
@@ -156,13 +157,13 @@ public class Gladiaattori {
      * @param vastustaja Gladiaattori, jota lyödään
      */
     public void iske(Gladiaattori vastustaja) {
+        int damage = 0;
         if (osuuko()) {
-            int damage = 10+(int)(Math.random() * voima);
+            damage = 10+(int)(Math.random() * voima);
             vastustaja.vahennaEnergiaa(damage);
-            this.viimeisinTehtyDamage = damage;
-
         }
         this.olikoIsku = true;
+        this.viimeisinTehtyDamage = damage;
     }
 
     private boolean osuuko() {

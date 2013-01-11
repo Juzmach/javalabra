@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.text.DefaultCaret;
 
 /**
  *
@@ -110,6 +111,11 @@ public class KomentoPaneeli extends JPanel implements Paivitettava {
         rullattavaKomentoruutu = new JScrollPane(komentoruutu, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         rullattavaKomentoruutu.setPreferredSize(new Dimension(200, 125));
         rullattavaKomentoruutu.setBackground(Color.WHITE);
+        rullattavaKomentoruutu.setWheelScrollingEnabled(true);
+        rullattavaKomentoruutu.setAutoscrolls(true);
+        komentoruutu.setCaretPosition(komentoruutu.getDocument().getLength());
+//        DefaultCaret caret = (DefaultCaret)komentoruutu.getCaret();
+//        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
         add(rullattavaKomentoruutu, BorderLayout.NORTH);
     }
 
