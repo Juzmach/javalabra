@@ -67,6 +67,10 @@ public class Gladiaattori {
         return nimi;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getViimeisinTehtyDamage() {
         return viimeisinTehtyDamage;
     }
@@ -175,6 +179,10 @@ public class Gladiaattori {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean olikoIsku() {
         return olikoIsku;
     }

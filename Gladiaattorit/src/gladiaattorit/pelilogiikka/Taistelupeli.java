@@ -116,6 +116,10 @@ public class Taistelupeli {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String getViimeisimmanIskunTuloste() {
         return viimeisimmanIskunTuloste;
     }
